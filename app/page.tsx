@@ -1,34 +1,25 @@
-'use client'
-
-import getGreeting from '@/lib/getGreeting'
-import { FormEvent, useState } from 'react'
+import Link from 'next/link'
 
 export default function Home() {
-  const [result, setResult] = useState('')
-  const [userInput, setUserInput] = useState('')
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const greeting: any = await getGreeting(userInput)
-    setResult(greeting)
-  }
-
   return (
-    <main>
-      <h1 className="bold text-xl">Travel App</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Where do you want to travel?
-          <input
-            type="text"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            className="border-2 border-black"
-          />
-        </label>
-        <button>Submit</button>
-      </form>
-      <div>{result}</div>
+    <main className="flex-1 bg-slate-300">
+      <div className="container mx-auto">
+        <h1 className="bold text-xl">Travel App</h1>
+        <section>
+          <Link
+            href="/dreamer"
+            className="inline-block rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+          >
+            Dreamer
+          </Link>
+          <Link
+            href="/builder"
+            className="inline-block rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+          >
+            Builder
+          </Link>
+        </section>
+      </div>
     </main>
   )
 }
