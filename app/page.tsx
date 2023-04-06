@@ -9,10 +9,7 @@ export default function Home() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('click')
-
-    const greeting = await getGreeting(userInput)
-
+    const greeting: any = await getGreeting(userInput)
     setResult(greeting)
   }
 
