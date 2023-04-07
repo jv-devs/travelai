@@ -1,6 +1,11 @@
 import Footer from './components/Footer'
-import Navbar from './components/Navbar'
+import { Quicksand } from '@next/font/google'
 import './globals.css'
+
+const quicksand = Quicksand({
+  subsets: ['latin'],
+  variable: '--font-quicksand',
+})
 
 export const metadata = {
   title: 'AI Travel App',
@@ -13,9 +18,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${quicksand.variable} font-sans`}>
       <body className="flex min-h-screen flex-col">
-        <Navbar />
         {children}
         <Footer />
       </body>
