@@ -1,26 +1,33 @@
 'use client'
 
 // import getGreeting from '@/lib/getGreeting'
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
 import vacationTypes from './data/vacation-types'
 import travelSeasons from './data/travel-seasons'
 import vacationBudgets from './data/vacation-budgets'
+import getDreamerSuggestions from '@/lib/getDreamerSuggestions'
 
 export default function Home() {
-  // const [result, setResult] = useState('')
+  const [result, setResult] = useState([])
   // const [userInput, setUserInput] = useState('')
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // const formData = new FormData(e.currentTarget)
-    // const origin = formData.get('origin')
-    // const budget = formData.get('budget')
-    // const groupSize = formData.get('group-size')
-    // const vacationType = formData.get('vacation-type')
+    const formData = new FormData(e.currentTarget)
+    const origin = formData.get('origin')
+    const vacationBudget = formData.get('vacation-budget')
+    const travelSeason = formData.get('travel-season')
+    const vacationType = formData.get('vacation-type')
+    const suggestions = await getDreamerSuggestions({
+      origin,
+      vacationBudget,
+      travelSeason,
+      vacationType,
+    })
 
     // const greeting: any = await getGreeting(userInput)
-    // setResult(greeting)
+    setResult(suggestions)
   }
 
   return (
@@ -111,7 +118,17 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* <div>{result}</div> */}
+      <div>
+        {Array.isArray(result) &&
+          result.map((result: DreamerResult) => {
+            return (
+              <div key={result.name}>
+                <h3>{result.name}</h3>
+                <p>{result.description}</p>
+              </div>
+            )
+          })}
+      </div>
     </main>
   )
 }
