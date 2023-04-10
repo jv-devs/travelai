@@ -11,7 +11,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Home() {
+export default function Dreamer() {
   const [results, setResults] = useState([])
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
