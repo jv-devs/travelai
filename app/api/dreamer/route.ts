@@ -14,29 +14,14 @@ export async function GET(request: Request) {
   const travelSeason = searchParams.get('travelSeason') || ''
   const vacationType = searchParams.get('vacationType') || ''
 
-  // console.log('location', location)
-  // if (location.trim().length === 0) {
-  //   const error = {message: 'Please enter a valid location'}
-  //   return NextResponse.json({ error },{ status: 400})
-  // }
-  const completion = await openai.createChatCompletion({
-    model: 'gpt-3.5-turbo',
+  const completion = await openai.createCompletion({
+    model: 'text-davinci-003',
+    prompt: generatePrompt(origin, vacationBudget, travelSeason, vacationType),
+    max_tokens: 500,
     temperature: 0,
-    max_tokens: 256,
-    messages: [
-      {
-        role: 'user',
-        content: generatePrompt(
-          origin,
-          vacationBudget,
-          travelSeason,
-          vacationType
-        ),
-      },
-    ],
   })
-  const result = completion?.data?.choices[0]?.message?.content || ''
-  console.log(result)
+
+  const result = completion?.data?.choices[0]?.text || ''
 
   return NextResponse.json({ result })
 }
@@ -47,10 +32,10 @@ function generatePrompt(
   travelSeason: string,
   vacationType: string
 ) {
-  return `Suggest 3 destinations along with descriptions (under 20 words).
+  return `Suggest 3 destinations along with descriptions (under 20 words) for user input.
 
-Input: origin of Toronto luxury budget, peak season, beach vacation
-Output:
+Example Input: origin of Toronto luxury budget, peak season, beach vacation
+Example Output:
 {
   "results": [
     {
@@ -68,6 +53,7 @@ Output:
   ]
 }
 
-Input: origin of ${origin}, ${vacationBudget} budget, ${travelSeason}, ${vacationType}
-Output:`
+User Input: origin of ${origin}, ${vacationBudget} budget, ${travelSeason}, ${vacationType}
+User Output:
+`
 }

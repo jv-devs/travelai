@@ -1,0 +1,1 @@
+GET http://localhost:3000/api/builder?origin=toronto&destination=mexico&travelSeason=low-season&vacationType=Beach vacation HTTP/1.1
