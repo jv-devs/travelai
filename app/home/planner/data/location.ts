@@ -39,7 +39,10 @@ const locationData = {
     "The Cancun Underwater Museum has over 500 submerged sculptures."
   ],
   greeting: "¡Bienvenidos a Cancún!",
-  localLanguage: "Spanish"
+  localLanguage: "Spanish",
+  climate: "Tropical",
+  currency: "Mexican Peso",
+  relaxationRating: 8
 };
 
 export default locationData
