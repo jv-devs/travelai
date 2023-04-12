@@ -1,15 +1,19 @@
 import ExchangeRate from './localDetails/ExchangeRate'
+import LocalPhrases from './localDetails/LocalPhrases'
+import NiceToKnow from './localDetails/NiceToKnow'
+import NeedToKnow from './localDetails/NeedToKnow'
 import Weather from './localDetails/Weather'
+import FunFacts from './localDetails/FunFacts'
 
 export default function LocalDetails() {
   return (
-    <section>
+    <section className="mx-auto max-w-7xl px-6 lg:px-8">
       <Weather />
       <ExchangeRate />
-      {/* need-to-know | ai */}
-      {/* nice-to-know | ai */}
-      {/* local phrases | ai*/}
-      {/* fun facts */}
+      <LocalPhrases />
+      <NiceToKnow />
+      <NeedToKnow />
+      <FunFacts />
     </section>
   )
 }
