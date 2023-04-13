@@ -1,12 +1,12 @@
-import locationData from '../../data/location'
+import store from '@/app/store'
 
-const niceToKnow: string[] = locationData.niceToKnow
+const niceToKnow: string[] = store.getState().vacation.niceToKnow
 
 export default function NiceToKnow() {
   return (
     <div className="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
       <h3 className="text-base font-semibold leading-6 text-gray-900">
-        Nice to Knows
+        Nice to Know
       </h3>
       <ul role="list" className="divide-y divide-gray-200">
         {niceToKnow.map((string, idx) => (

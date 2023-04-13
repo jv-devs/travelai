@@ -1,24 +1,27 @@
-import locationData from '../data/location'
+'use client'
 
-// export default function Intro() {
-//   return (
-//     <section>
-//       <h1>{locationData.name}</h1>
-//       <p>{locationData.description}</p>
-//       <p>{locationData.greeting}</p>
-//       <p>{locationData.localLanguage}</p>
-//     </section>
-//   )
-// }
+import { useSelector } from 'react-redux'
 
-const stats = [
-  { name: 'Language', value: locationData.localLanguage },
-  { name: 'Currency', value: locationData.currency },
-  { name: 'Climate', value: locationData.climate },
-  { name: 'Relaxation rating', value: locationData.relaxationRating },
-]
+import { RootState } from '@/app/store'
+import ReduxTestButtons from './ReduxTestButtons'
 
 export default function Intro() {
+  const {
+    localLanguage,
+    currency,
+    climate,
+    relaxationRating,
+    name,
+    description,
+  } = useSelector((state: RootState) => state.vacation)
+
+  const stats = [
+    { name: 'Language', value: localLanguage },
+    { name: 'Currency', value: currency },
+    { name: 'Climate', value: climate },
+    { name: 'Relaxation rating', value: relaxationRating },
+  ]
+
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
       <img
@@ -52,15 +55,12 @@ export default function Intro() {
       </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
+          <ReduxTestButtons />
           <h1 className="text-3xl tracking-tight text-white sm:text-4xl">
             Dream Destination:
-            <span className="block text-4xl font-bold sm:text-6xl">
-              {locationData.name}
-            </span>
+            <span className="block text-4xl font-bold sm:text-6xl">{name}</span>
           </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-300">
-            {locationData.description}
-          </p>
+          <p className="mt-6 text-lg leading-8 text-gray-300">{description}</p>
         </div>
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
           <dl className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">

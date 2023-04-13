@@ -1,6 +1,6 @@
-import locationData from '../../data/location'
+import store from '@/app/store'
 
-const { from, to, rate } = locationData.exchangeRate
+const { from, to, rate } = store.getState().vacation.exchangeRate
 
 const stats = [
   { name: 'From', stat: from },

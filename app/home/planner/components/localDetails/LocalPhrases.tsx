@@ -1,6 +1,6 @@
-import locationData from '../../data/location'
+import store from '@/app/store'
 
-const phrases = locationData.localPhrases
+const phrases = store.getState().vacation.localPhrases
 
 export default function LocalPhrases() {
   return (

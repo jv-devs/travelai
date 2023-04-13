@@ -1,6 +1,6 @@
-import locationData from '../../data/location'
+import store from '@/app/store'
 
-const { temperature, conditions, humidity } = locationData.weather
+const { temperature, conditions, humidity } = store.getState().vacation.weather
 
 const stats = [
   { id: 1, name: 'Temperature', value: temperature },

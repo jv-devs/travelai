@@ -1,6 +1,6 @@
-import locationData from '../data/location'
+import store from '@/app/store'
 
-const activities: string[] = locationData.activitySuggestionsList
+const activities: string[] = store.getState().vacation.activitySuggestionsList
 
 export default function ItineraryList() {
   return (

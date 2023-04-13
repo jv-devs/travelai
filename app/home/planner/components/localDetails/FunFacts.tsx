@@ -1,6 +1,6 @@
-import locationData from '../../data/location'
+import store from '@/app/store'
 
-const funFacts: string[] = locationData.funFacts
+const funFacts: string[] = store.getState().vacation.funFacts
 
 export default function FunFacts() {
   return (

@@ -1,6 +1,6 @@
-import locationData from '../../data/location'
+import store from '@/app/store'
 
-const needToKnow: string[] = locationData.needToKnow
+const needToKnow: string[] = store.getState().vacation.needToKnow
 
 export default function NiceToKnow() {
   return (
