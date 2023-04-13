@@ -1,14 +1,19 @@
-import store from '@/app/store'
+'use client'
 
-const { from, to, rate } = store.getState().vacation.exchangeRate
-
-const stats = [
-  { name: 'From', stat: from },
-  { name: 'To', stat: to },
-  { name: 'Rate', stat: rate },
-]
+import { useSelector } from 'react-redux'
+import { RootState } from '@/app/store'
 
 export default function ExchangeRate() {
+  const { from, to, rate } = useSelector(
+    (state: RootState) => state.vacation.exchangeRate
+  )
+
+  const stats = [
+    { name: 'From', stat: from },
+    { name: 'To', stat: to },
+    { name: 'Rate', stat: rate },
+  ]
+
   return (
     <div>
       <h3 className="text-base font-semibold leading-6 text-gray-900">

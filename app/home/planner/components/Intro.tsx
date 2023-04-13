@@ -1,9 +1,7 @@
 'use client'
 
 import { useSelector } from 'react-redux'
-
 import { RootState } from '@/app/store'
-import ReduxTestButtons from './ReduxTestButtons'
 
 export default function Intro() {
   const {
@@ -55,7 +53,6 @@ export default function Intro() {
       </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <ReduxTestButtons />
           <h1 className="text-3xl tracking-tight text-white sm:text-4xl">
             Dream Destination:
             <span className="block text-4xl font-bold sm:text-6xl">{name}</span>

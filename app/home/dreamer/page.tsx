@@ -7,12 +7,16 @@ import travelSeasons from './data/travel-seasons'
 import vacationBudgets from './data/vacation-budgets'
 import getDreamerSuggestions from '@/lib/getDreamerSuggestions'
 import getVacationLocationData from '@/lib/getVacationLocationData'
+import { useRouter } from 'next/navigation'
+import { updateField } from '@/app/store/vacationSlice'
+import store from '@/app/store'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Dreamer() {
+  const router = useRouter()
   const [results, setResults] = useState([])
   const [userInputData, setUserInputData] = useState({
     origin: '',
@@ -21,6 +25,7 @@ export default function Dreamer() {
     vacationType: '',
   })
 
+  // user submits form
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
@@ -39,6 +44,7 @@ export default function Dreamer() {
     setResults(suggestions)
   }
 
+  // user chooses a location
   const handleClick = async (e: MouseEvent<HTMLAnchorElement>) => {
     const destinationPick = e.currentTarget.id
     const userChoice: UserChoiceData = {
@@ -50,7 +56,10 @@ export default function Dreamer() {
     console.log({ userChoice })
 
     const data = await getVacationLocationData(userChoice)
-    console.log({ data })
+    console.log('data', data)
+
+    store.dispatch(updateField(data))
+    router.push('/home/planner')
   }
 
   return (

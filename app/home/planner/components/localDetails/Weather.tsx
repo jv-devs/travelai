@@ -1,14 +1,17 @@
-import store from '@/app/store'
+'use client'
 
-const { temperature, conditions, humidity } = store.getState().vacation.weather
-
-const stats = [
-  { id: 1, name: 'Temperature', value: temperature },
-  { id: 2, name: 'Conditions', value: conditions },
-  { id: 3, name: 'Humidity', value: humidity },
-]
+import { useSelector } from 'react-redux'
+import { RootState } from '@/app/store'
 
 export default function Weather() {
+  const { temperature, conditions, humidity } = useSelector(
+    (state: RootState) => state.vacation.weather
+  )
+  const stats = [
+    { id: 1, name: 'Temperature', value: temperature },
+    { id: 2, name: 'Conditions', value: conditions },
+    { id: 3, name: 'Humidity', value: humidity },
+  ]
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
