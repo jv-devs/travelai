@@ -1,11 +1,12 @@
 'use client'
 
 // import getGreeting from '@/lib/getGreeting'
-import { FormEvent, useState } from 'react'
+import { FormEvent, MouseEvent, useState } from 'react'
 import vacationTypes from './data/vacation-types'
 import travelSeasons from './data/travel-seasons'
 import vacationBudgets from './data/vacation-budgets'
 import getDreamerSuggestions from '@/lib/getDreamerSuggestions'
+import getVacationLocationData from '@/lib/getVacationLocationData'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -13,24 +14,43 @@ function classNames(...classes: string[]) {
 
 export default function Dreamer() {
   const [results, setResults] = useState([])
+  const [userInputData, setUserInputData] = useState({
+    origin: '',
+    vacationBudget: '',
+    travelSeason: '',
+    vacationType: '',
+  })
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
     const formData = new FormData(e.currentTarget)
-    const origin = formData.get('origin')
-    const vacationBudget = formData.get('vacation-budget')
-    const travelSeason = formData.get('travel-season')
-    const vacationType = formData.get('vacation-type')
-    const suggestions = await getDreamerSuggestions({
-      origin,
-      vacationBudget,
-      travelSeason,
-      vacationType,
-    })
-
-    // const greeting: any = await getGreeting(userInput)
+    const origin = formData.get('origin') || ''
+    const vacationBudget = formData.get('vacation-budget') || ''
+    const travelSeason = formData.get('travel-season') || ''
+    const vacationType = formData.get('vacation-type') || ''
+    const userInputs = {
+      origin: origin.toString(),
+      vacationBudget: vacationBudget.toString(),
+      travelSeason: travelSeason.toString(),
+      vacationType: vacationType.toString(),
+    }
+    setUserInputData(userInputs)
+    const suggestions = await getDreamerSuggestions({ userInputs })
     setResults(suggestions)
+  }
+
+  const handleClick = async (e: MouseEvent<HTMLAnchorElement>) => {
+    const destinationPick = e.currentTarget.id
+    const userChoice: UserChoiceData = {
+      destination: destinationPick,
+      vacationBudget: userInputData.vacationBudget,
+      travelSeason: userInputData.travelSeason,
+      vacationType: userInputData.vacationType,
+    }
+    console.log({ userChoice })
+
+    const data = await getVacationLocationData(userChoice)
+    console.log({ data })
   }
 
   return (
@@ -137,7 +157,7 @@ export default function Dreamer() {
             <div className="isolate mx-auto mt-16 grid max-w-md grid-cols-1 gap-y-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
               {results.map((result: DreamerResult, resultIdx) => (
                 <div
-                  key={result.id}
+                  key={resultIdx}
                   className={classNames(
                     result.mostPopular
                       ? 'lg:z-10 lg:rounded-b-none'
@@ -172,6 +192,7 @@ export default function Dreamer() {
                   </div>
                   <a
                     href="#"
+                    id={result.name}
                     // aria-describedby={result.id}
                     className={classNames(
                       result.mostPopular
@@ -179,6 +200,7 @@ export default function Dreamer() {
                         : 'text-indigo-600 ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300',
                       'mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
                     )}
+                    onClick={handleClick}
                   >
                     Create {result.name} Dream
                   </a>

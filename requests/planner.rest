@@ -1,0 +1,1 @@
+GET http://localhost:3000/api/planner?destination=toronto&vacationBudget=luxury&travelSeason=low-season&vacationType=culture HTTP/1.1
