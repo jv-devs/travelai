@@ -6,7 +6,6 @@ export default async function getDreamerSuggestions(formData: {}) {
       ...formData,
     },
   })
-  console.log(res.data.result)
   const suggestions = JSON.parse(res.data.result)
   return suggestions.results
 }
