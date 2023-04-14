@@ -1,3 +1,4 @@
+import { PrivateRoute } from '../components/PrivateRoute'
 import Navbar from './components/Navbar'
 
 export default function HomeLayout({
@@ -6,9 +7,9 @@ export default function HomeLayout({
   children: React.ReactNode
 }) {
   return (
-    <>
+    <PrivateRoute>
       <Navbar />
       {children}
-    </>
+    </PrivateRoute>
   )
 }

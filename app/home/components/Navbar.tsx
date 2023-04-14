@@ -4,12 +4,17 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { PlusIcon } from '@heroicons/react/20/solid'
+import AuthContext from '@/app/context/UserContext'
+import { useContext } from 'react'
+import Image from 'next/image'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Example() {
+  const { handleSignOut, currentUser } = useContext(AuthContext)
+  const { displayName, email, photoURL } = currentUser
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -87,10 +92,12 @@ export default function Example() {
                     <div>
                       <Menu.Button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                         <span className="sr-only">Open user menu</span>
-                        <img
+                        <Image
                           className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          src={photoURL}
                           alt=""
+                          width={32}
+                          height={32}
                         />
                       </Menu.Button>
                     </div>
@@ -133,7 +140,8 @@ export default function Example() {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
+                              onClick={() => handleSignOut()}
+                              href="/"
                               className={classNames(
                                 active ? 'bg-gray-100' : '',
                                 'block px-4 py-2 text-sm text-gray-700'
@@ -186,18 +194,20 @@ export default function Example() {
             <div className="border-t border-gray-200 pb-3 pt-4">
               <div className="flex items-center px-4 sm:px-6">
                 <div className="flex-shrink-0">
-                  <img
+                  <Image
                     className="h-10 w-10 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    src={photoURL}
                     alt=""
+                    width={32}
+                    height={32}
                   />
                 </div>
                 <div className="ml-3">
                   <div className="text-base font-medium text-gray-800">
-                    Tom Cook
+                    {displayName}
                   </div>
                   <div className="text-sm font-medium text-gray-500">
-                    tom@example.com
+                    {email}
                   </div>
                 </div>
                 <button
@@ -225,8 +235,9 @@ export default function Example() {
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="a"
-                  href="#"
+                  href="/"
                   className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 sm:px-6"
+                  onClick={() => handleSignOut()}
                 >
                   Sign out
                 </Disclosure.Button>

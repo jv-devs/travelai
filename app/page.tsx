@@ -1,8 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { signIn } from './database/firebase'
+import AuthContext from './context/UserContext'
+import { useRouter } from 'next/navigation'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -11,8 +14,17 @@ const navigation = [
   { name: 'Company', href: '#' },
 ]
 
-export default function Example() {
+export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { currentUser } = useContext(AuthContext)
+  const router = useRouter()
+
+  useEffect(() => {
+    if (currentUser) {
+      router.push('/home')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser])
 
   return (
     <div className="bg-white">
@@ -53,12 +65,12 @@ export default function Example() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a
-              href="#"
+            <button
+              onClick={() => signIn()}
               className="text-sm font-semibold leading-6 text-gray-900"
             >
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
+              Log in with Google<span aria-hidden="true">&rarr;</span>
+            </button>
           </div>
         </nav>
         <Dialog
@@ -101,12 +113,12 @@ export default function Example() {
                   ))}
                 </div>
                 <div className="py-6">
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  <button
+                    onClick={() => signIn()}
+                    className="text-sm font-semibold leading-6 text-gray-900"
                   >
-                    Log in
-                  </a>
+                    Log in with Google<span aria-hidden="true">&rarr;</span>
+                  </button>
                 </div>
               </div>
             </div>
