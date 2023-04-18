@@ -10,6 +10,7 @@ import getVacationLocationData from '@/lib/getVacationLocationData'
 import { useRouter } from 'next/navigation'
 import { updateField } from '@/app/store/vacationSlice'
 import store from '@/app/store'
+import Link from 'next/link'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -40,7 +41,7 @@ export default function Dreamer() {
       vacationType: vacationType.toString(),
     }
     setUserInputData(userInputs)
-    const suggestions = await getDreamerSuggestions({ userInputs })
+    const suggestions = await getDreamerSuggestions(userInputs)
     setResults(suggestions)
   }
 
@@ -199,8 +200,8 @@ export default function Dreamer() {
                       {result.description}
                     </p>
                   </div>
-                  <a
-                    href="#"
+                  <Link
+                    href="/home/planner"
                     id={result.name}
                     // aria-describedby={result.id}
                     className={classNames(
@@ -212,7 +213,7 @@ export default function Dreamer() {
                     onClick={handleClick}
                   >
                     Create {result.name} Dream
-                  </a>
+                  </Link>
                 </div>
               ))}
             </div>

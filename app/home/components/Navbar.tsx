@@ -7,6 +7,7 @@ import { PlusIcon } from '@heroicons/react/20/solid'
 import AuthContext from '@/app/context/UserContext'
 import { useContext } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -14,7 +15,9 @@ function classNames(...classes: string[]) {
 
 export default function Example() {
   const { handleSignOut, currentUser } = useContext(AuthContext)
-  const { displayName, email, photoURL } = currentUser
+  const displayName = currentUser?.displayName
+  const email = currentUser?.email
+  const photoURL = currentUser?.photoURL
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -42,30 +45,30 @@ export default function Example() {
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                  <a
+                  <Link
                     href="#"
                     className="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
                   >
                     Home
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/home/dreamer"
                     className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
                     Dreamer
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/home/builder"
                     className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
                     Builder
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="#"
                     className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:cursor-not-allowed hover:border-gray-300 hover:text-gray-700"
                   >
                     About
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="flex items-center">
@@ -94,7 +97,7 @@ export default function Example() {
                         <span className="sr-only">Open user menu</span>
                         <Image
                           className="h-8 w-8 rounded-full"
-                          src={photoURL}
+                          src={photoURL || ''}
                           alt=""
                           width={32}
                           height={32}
@@ -113,7 +116,7 @@ export default function Example() {
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <Menu.Item>
                           {({ active }) => (
-                            <a
+                            <Link
                               href="#"
                               className={classNames(
                                 active ? 'bg-gray-100' : '',
@@ -121,12 +124,12 @@ export default function Example() {
                               )}
                             >
                               Your Profile
-                            </a>
+                            </Link>
                           )}
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <a
+                            <Link
                               href="#"
                               className={classNames(
                                 active ? 'bg-gray-100' : '',
@@ -134,12 +137,12 @@ export default function Example() {
                               )}
                             >
                               Settings
-                            </a>
+                            </Link>
                           )}
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <a
+                            <Link
                               onClick={() => handleSignOut()}
                               href="/"
                               className={classNames(
@@ -148,7 +151,7 @@ export default function Example() {
                               )}
                             >
                               Sign out
-                            </a>
+                            </Link>
                           )}
                         </Menu.Item>
                       </Menu.Items>
@@ -196,7 +199,7 @@ export default function Example() {
                 <div className="flex-shrink-0">
                   <Image
                     className="h-10 w-10 rounded-full"
-                    src={photoURL}
+                    src={photoURL || ''}
                     alt=""
                     width={32}
                     height={32}

@@ -5,6 +5,7 @@ import { FormEvent, useState } from 'react'
 import vacationTypes from './data/vacation-types'
 import travelSeasons from './data/travel-seasons'
 import getBuilderSuggestions from '@/lib/getBuilderSuggestions'
+import Link from 'next/link'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -173,7 +174,7 @@ export default function Builder() {
                         ))}
                       </ul>
                     </div>
-                    <a
+                    <Link
                       href="#"
                       // aria-describedby={result.id}
                       className={classNames(
@@ -184,7 +185,7 @@ export default function Builder() {
                       )}
                     >
                       Create {result.name} Dream
-                    </a>
+                    </Link>
                   </div>
                 ))}
             </div>
