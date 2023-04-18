@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${quicksand.variable} font-sans`}>
-      <body className="flex min-h-screen flex-col">
+    <html lang="en" className={`${quicksand.variable} h-full font-sans`}>
+      <body className="flex h-full min-h-screen flex-col">
         <AuthProvider>
           <Providers>
             {children}
