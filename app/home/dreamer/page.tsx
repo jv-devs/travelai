@@ -8,7 +8,7 @@ import vacationBudgets from './data/vacation-budgets'
 import getDreamerSuggestions from '@/lib/getDreamerSuggestions'
 import getVacationLocationData from '@/lib/getVacationLocationData'
 import { useRouter } from 'next/navigation'
-import { updateField } from '@/app/store/vacationSlice'
+import { setLoading, updateField } from '@/app/store/vacationSlice'
 import store from '@/app/store'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -58,10 +58,11 @@ export default function Dreamer() {
     }
     console.log({ userChoice })
 
+    store.dispatch(setLoading(true))
     const data = await getVacationLocationData(userChoice)
-    console.log('data', data)
-
     store.dispatch(updateField(data))
+    store.dispatch(setLoading(false))
+
     router.push('/home/planner')
   }
 

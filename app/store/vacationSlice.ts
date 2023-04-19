@@ -35,6 +35,7 @@ interface VacationState {
   climate: string
   currency: string
   relaxationRating: number
+  loading: boolean
 }
 
 const initialState: VacationState = {
@@ -85,6 +86,7 @@ const initialState: VacationState = {
   vacationBudget: 'budget-friendly',
   travelSeason: 'peak season',
   vacationType: 'beach vacation',
+  loading: true,
 }
 
 const vacationSlice = createSlice({
@@ -94,10 +96,13 @@ const vacationSlice = createSlice({
     updateField: (state, action: PayloadAction<Partial<VacationState>>) => {
       return { ...state, ...action.payload }
     },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      return { ...state, loading: action.payload }
+    },
   },
 })
 
-export const { updateField } = vacationSlice.actions
+export const { updateField, setLoading } = vacationSlice.actions
 
 export const selectVacation = (state: RootState) => state.vacation
 
