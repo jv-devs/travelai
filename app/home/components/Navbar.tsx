@@ -1,5 +1,3 @@
-'use client'
-
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -8,12 +6,24 @@ import AuthContext from '@/app/context/UserContext'
 import { useContext } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { motion } from 'framer-motion'
+import { slideFromLeft } from '@/lib/animations'
+
+const links = [
+  { href: '/home', label: 'Home' },
+  { href: '/home/dreamer', label: 'Dreamer' },
+  { href: '/home/builder', label: 'Builder' },
+  { href: '/home/planner', label: 'Planner' },
+  { href: '/home/about', label: 'About' },
+]
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Navbar() {
+  const path = usePathname()
   const { handleSignOut, currentUser } = useContext(AuthContext)
   const displayName = currentUser?.displayName
   const email = currentUser?.email
@@ -37,38 +47,39 @@ export default function Navbar() {
                   </Disclosure.Button>
                 </div>
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt="Your Company"
-                  />
+                  <motion.div variants={slideFromLeft}>
+                    <Image
+                      className="block h-8 w-auto"
+                      src="/icon.svg"
+                      alt="Your Company"
+                      width={32}
+                      height={32}
+                    />
+                  </motion.div>
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
-                  {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                  <Link
-                    href="/home"
-                    className="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    href="/home/dreamer"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                  >
-                    Dreamer
-                  </Link>
-                  <Link
-                    href="/home/builder"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                  >
-                    Builder
-                  </Link>
-                  <Link
-                    href="#"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:cursor-not-allowed hover:border-gray-300 hover:text-gray-700"
-                  >
-                    About
-                  </Link>
+                  {links.map((link) => (
+                    <Link
+                      key={link.href}
+                      className="relative inline-flex items-center bg-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-700"
+                      href={link.href}
+                    >
+                      {link.href === path && (
+                        <motion.span
+                          layoutId="underline"
+                          transition={{
+                            type: 'spring',
+                            stiffness: 700,
+                            damping: 30,
+                            duration: 0.5,
+                            ease: [0.6, 0.01, 0.05, 0.95],
+                          }}
+                          className="absolute bottom-0 left-0 block h-[2px] w-full bg-indigo-500"
+                        />
+                      )}
+                      {link.label}
+                    </Link>
+                  ))}
                 </div>
               </div>
               <div className="flex items-center">
@@ -97,7 +108,7 @@ export default function Navbar() {
                         <span className="sr-only">Open user menu</span>
                         <Image
                           className="h-8 w-8 rounded-full"
-                          src={photoURL || ''}
+                          src={photoURL || '/icon.svg'}
                           alt=""
                           width={32}
                           height={32}
@@ -199,7 +210,7 @@ export default function Navbar() {
                 <div className="flex-shrink-0">
                   <Image
                     className="h-10 w-10 rounded-full"
-                    src={photoURL || ''}
+                    src={photoURL || '/icon.svg'}
                     alt=""
                     width={32}
                     height={32}

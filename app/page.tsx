@@ -8,6 +8,15 @@ import AuthContext from './context/UserContext'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
+import {
+  fade,
+  imageAnimation,
+  riseWithFadeDelay,
+  slideFromLeft,
+  staggerImages,
+} from '@/lib/animations'
+import AnimatedWords from './components/AnimatedWords'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -29,7 +38,13 @@ export default function App() {
   }, [currentUser])
 
   return (
-    <div className="bg-white">
+    <motion.div
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={fade}
+      className="bg-white"
+    >
       <header className="absolute inset-x-0 top-0 z-50">
         <nav
           className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
@@ -38,11 +53,15 @@ export default function App() {
           <div className="flex lg:flex-1">
             <Link href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
+              <motion.div variants={slideFromLeft}>
+                <Image
+                  className="h-8 w-auto"
+                  src="/icon.svg"
+                  alt=""
+                  width={32}
+                  height={32}
+                />
+              </motion.div>
             </Link>
           </div>
           <div className="flex lg:hidden">
@@ -86,10 +105,12 @@ export default function App() {
             <div className="flex items-center justify-between">
               <Link href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
-                <img
+                <Image
                   className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  src="/icon.svg"
                   alt=""
+                  width={32}
+                  height={32}
                 />
               </Link>
               <button
@@ -175,35 +196,38 @@ export default function App() {
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                 <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
                   <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                    AI-powered travel made simple
-                    <br />
-                    Your ideal trip, in seconds.
+                    <AnimatedWords title="AI-powered travel made simple. Your ideal trip, in seconds." />
                   </h1>
-                  <p className="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
-                    Discover your next adventure with our AI-powered travel app.
-                    Get personalized travel suggestions based on your
-                    preferences and an AI-generated itinerary for your dream
-                    destination. Effortlessly plan your perfect trip and create
-                    unforgettable memories.
-                  </p>
-                  <div className="mt-10 flex items-center gap-x-6">
-                    <button
-                      onClick={() => signIn()}
-                      className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                      Get started
-                    </button>
-                    <Link
-                      href="#"
-                      className="cursor-not-allowed text-sm font-semibold leading-6 text-gray-900"
-                    >
-                      Live demo <span aria-hidden="true">→</span>
-                    </Link>
-                  </div>
+                  <motion.div key="lpContent" variants={riseWithFadeDelay}>
+                    <p className="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
+                      Discover your next adventure with our AI-powered travel
+                      app. Get personalized travel suggestions based on your
+                      preferences and an AI-generated itinerary for your dream
+                      destination. Effortlessly plan your perfect trip and
+                      create unforgettable memories.
+                    </p>
+                    <div className="mt-10 flex items-center gap-x-6">
+                      <button
+                        onClick={() => signIn()}
+                        className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      >
+                        Get started
+                      </button>
+                      <Link
+                        href="#"
+                        className="cursor-not-allowed text-sm font-semibold leading-6 text-gray-900"
+                      >
+                        Live demo <span aria-hidden="true">→</span>
+                      </Link>
+                    </div>
+                  </motion.div>
                 </div>
-                <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
+                <motion.div
+                  variants={staggerImages}
+                  className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0"
+                >
                   <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
-                    <div className="relative">
+                    <motion.div variants={imageAnimation} className="relative">
                       <Image
                         src="/images/alex-ovs-UDyF0_Frxqs-unsplash.jpg"
                         alt=""
@@ -212,10 +236,10 @@ export default function App() {
                         height={3781}
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
-                    </div>
+                    </motion.div>
                   </div>
                   <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
-                    <div className="relative">
+                    <motion.div variants={imageAnimation} className="relative">
                       <Image
                         src="/images/hassan-nizam-98QNiesqIC4-unsplash.jpg"
                         alt=""
@@ -224,8 +248,8 @@ export default function App() {
                         height={6000}
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
-                    </div>
-                    <div className="relative">
+                    </motion.div>
+                    <motion.div variants={imageAnimation} className="relative">
                       <Image
                         src="/images/manuel-velasquez-1GNXvM18gjo-unsplash.jpg"
                         alt=""
@@ -234,10 +258,10 @@ export default function App() {
                         height={5775}
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
-                    </div>
+                    </motion.div>
                   </div>
                   <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
-                    <div className="relative">
+                    <motion.div variants={imageAnimation} className="relative">
                       <Image
                         src="/images/maarten-van-den-heuvel-Siuwr3uCir0-unsplash.jpg"
                         alt=""
@@ -246,8 +270,8 @@ export default function App() {
                         height={4032}
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
-                    </div>
-                    <div className="relative">
+                    </motion.div>
+                    <motion.div variants={imageAnimation} className="relative">
                       <Image
                         src="/images/fran-JLIdRafL03A-unsplash.jpg"
                         alt=""
@@ -256,14 +280,14 @@ export default function App() {
                         height={5769}
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
         </div>
       </main>
-    </div>
+    </motion.div>
   )
 }

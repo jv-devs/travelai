@@ -10,18 +10,13 @@ interface PrivateRouteProps {
 
 export const PrivateRoute = ({ children }: PrivateRouteProps) => {
   const router = useRouter()
-  const { currentUser } = useContext(AuthContext)
+  const { currentUser, isLoading } = useContext(AuthContext)
 
   useEffect(() => {
-    if (!currentUser) {
+    if (!currentUser && !isLoading) {
       router.push('/')
     }
-  }, [currentUser, router])
-
-  if (!currentUser) {
-    // Render a loading spinner or message if authentication state is being checked
-    return <div>Loading...</div>
-  }
+  }, [currentUser, router, isLoading])
 
   // Render the children if user is authenticated
   return <>{children}</>

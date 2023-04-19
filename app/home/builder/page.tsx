@@ -6,6 +6,8 @@ import vacationTypes from './data/vacation-types'
 import travelSeasons from './data/travel-seasons'
 import getBuilderSuggestions from '@/lib/getBuilderSuggestions'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { fade } from '@/lib/animations'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -34,7 +36,13 @@ export default function Builder() {
   }
 
   return (
-    <main className="flex-1 bg-slate-300">
+    <motion.main
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={fade}
+      className="flex-1 bg-slate-300"
+    >
       <div className="container mx-auto">
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
@@ -192,6 +200,6 @@ export default function Builder() {
           </div>
         </div>
       </section>
-    </main>
+    </motion.main>
   )
 }

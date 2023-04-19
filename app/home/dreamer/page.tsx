@@ -11,6 +11,8 @@ import { useRouter } from 'next/navigation'
 import { updateField } from '@/app/store/vacationSlice'
 import store from '@/app/store'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { fade } from '@/lib/animations'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -64,7 +66,13 @@ export default function Dreamer() {
   }
 
   return (
-    <main className="flex-1 bg-slate-300">
+    <motion.main
+      className="flex-1 bg-slate-300"
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={fade}
+    >
       <div className="container mx-auto">
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
@@ -220,6 +228,6 @@ export default function Dreamer() {
           </div>
         </div>
       </section>
-    </main>
+    </motion.main>
   )
 }

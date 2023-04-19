@@ -45,4 +45,4 @@ const signIn = () => {
     })
 }
 export default app
-export { auth, provider, signIn }
+export { auth, signIn }

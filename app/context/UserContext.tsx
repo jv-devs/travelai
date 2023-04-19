@@ -7,21 +7,25 @@ import { auth } from '../database/firebase'
 interface AuthContextProps {
   currentUser: User | null
   handleSignOut: () => void
+  isLoading: boolean
 }
 
 const AuthContext = createContext<AuthContextProps>({
   currentUser: null,
   handleSignOut: () => {},
+  isLoading: true,
 })
 
 export const AuthProvider = ({ children }: any) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       console.log('auth state changed')
       setCurrentUser(user)
       console.log(user)
+      setIsLoading(false)
     })
     return unsubscribe
   }, [])
@@ -35,6 +39,7 @@ export const AuthProvider = ({ children }: any) => {
       value={{
         currentUser,
         handleSignOut,
+        isLoading,
       }}
     >
       {children}

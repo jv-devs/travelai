@@ -1,9 +1,19 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { fade } from '@/lib/animations'
 
 export default function Home() {
   return (
-    <main className="h-full flex-1 bg-slate-300">
+    <motion.main
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={fade}
+      className="h-full flex-1 bg-slate-300"
+    >
       <div className="grid min-h-full grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1">
         <div className="relative flex">
           <Image
@@ -12,6 +22,7 @@ export default function Home() {
             className="absolute inset-0 h-full w-full object-cover object-center"
             width={4621}
             height={3072}
+            priority
           />
           <div className="relative flex w-full flex-col items-start justify-end bg-black bg-opacity-40 p-8 sm:p-12">
             <h2 className="text-lg font-medium text-white text-opacity-75">
@@ -36,6 +47,7 @@ export default function Home() {
             className="absolute inset-0 h-full w-full object-cover object-center"
             width={5773}
             height={4000}
+            priority
           />
           <div className="relative flex w-full flex-col items-start justify-end bg-black bg-opacity-40 p-8 sm:p-12">
             <h2 className="text-lg font-medium text-white text-opacity-75">
@@ -54,6 +66,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </main>
+    </motion.main>
   )
 }
