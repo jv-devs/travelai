@@ -13,6 +13,7 @@ import store from '@/app/store'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { fade } from '@/lib/animations'
+import getCurrentWeather from '@/lib/getCurrentWeather'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -58,10 +59,16 @@ export default function Dreamer() {
     }
     console.log({ userChoice })
 
+    // promise.all!!!
     const data = await getVacationLocationData(userChoice)
     console.log('data', data)
-
-    store.dispatch(updateField(data))
+    const currentWeather = await getCurrentWeather(userChoice.destination)
+    console.log('currentWeather', currentWeather)
+    const vacationData = {
+      ...data,
+      currentWeather,
+    }
+    store.dispatch(updateField(vacationData))
     router.push('/home/planner')
   }
 
