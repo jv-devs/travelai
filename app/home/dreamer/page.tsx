@@ -14,6 +14,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { fade } from '@/lib/animations'
 import getCurrentWeather from '@/lib/getCurrentWeather'
+import getCurrentWeather from '@/lib/getCurrentWeather'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
