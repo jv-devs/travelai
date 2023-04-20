@@ -1,15 +1,14 @@
-'use client'
+import { Fragment, useContext } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
-import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { PlusIcon } from '@heroicons/react/20/solid'
+
 import AuthContext from '@/app/context/UserContext'
-import { useContext } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { motion } from 'framer-motion'
 import { slideFromLeft } from '@/lib/animations'
 
 const links = [
@@ -177,35 +176,21 @@ export default function Navbar() {
 
           <Disclosure.Panel className="md:hidden">
             <div className="space-y-1 pb-3 pt-2">
-              {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
-              <Disclosure.Button
-                as={Link}
-                href="/home"
-                className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700 sm:pl-5 sm:pr-6"
-              >
-                Home
-              </Disclosure.Button>
-              <Disclosure.Button
-                as={Link}
-                href="/home/dreamer"
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6"
-              >
-                Dreamer
-              </Disclosure.Button>
-              <Disclosure.Button
-                as={Link}
-                href="/home/builder"
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6"
-              >
-                Builder
-              </Disclosure.Button>
-              <Disclosure.Button
-                as={Link}
-                href="#"
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6"
-              >
-                About
-              </Disclosure.Button>
+              {links.map((link, idx) => (
+                <Disclosure.Button
+                  key={idx}
+                  as={Link}
+                  href={link.href}
+                  className={classNames(
+                    link.href === path
+                      ? 'border-indigo-500 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 hover:text-indigo-900'
+                      : 'border-l-4 border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700',
+                    'block py-2 pl-3 pr-4 text-base font-medium text-gray-500 sm:pl-5 sm:pr-6'
+                  )}
+                >
+                  {link.label}
+                </Disclosure.Button>
+              ))}
             </div>
             <div className="border-t border-gray-200 pb-3 pt-4">
               <div className="flex items-center px-4 sm:px-6">
