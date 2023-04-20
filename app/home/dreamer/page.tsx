@@ -17,6 +17,7 @@ import { fade } from '@/lib/animations'
 import { updateField } from '@/app/store/vacationSlice'
 import store from '@/app/store'
 import getLocationImages from '@/lib/getLocationImages'
+import getExchangeRate from '@/lib/getExchangeRate'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -84,7 +85,10 @@ export default function Dreamer() {
         //   store.dispatch(updateField(currentWeather))
         // }),
       ])
-
+      await getExchangeRate('EUR').then((exchangeRate) => {
+        console.log('dispatching exchange rate data')
+        store.dispatch(updateField(exchangeRate))
+      })
       router.push('/home/planner')
     } catch (error) {
       // TODO: handle error
