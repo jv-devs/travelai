@@ -6,7 +6,7 @@ export default async function getBuilderSuggestions(formData: {}) {
       ...formData,
     },
   })
-  console.log(res.data.result)
+  // console.log(res.data.result)
   const suggestions = JSON.parse(res.data.result)
   return suggestions.packages
 }

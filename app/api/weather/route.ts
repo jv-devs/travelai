@@ -9,7 +9,7 @@ export async function GET(request: Request) {
     )
     if (data.ok) {
       const response = await data.json()
-      console.log('response', response)
+      // console.log('response', response)
       if (response.cod !== 200) {
         return NextResponse.json(
           { message: response.message },

@@ -23,7 +23,7 @@ export async function GET(request: Request) {
 
   const result = complete?.data?.choices[0]?.text || ''
 
-  console.log(complete)
+  // console.log(complete)
 
   return NextResponse.json({ result })
 }

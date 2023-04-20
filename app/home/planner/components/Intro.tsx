@@ -2,6 +2,8 @@
 
 import { useSelector } from 'react-redux'
 import { RootState } from '@/app/store'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Intro() {
   const {
@@ -11,6 +13,7 @@ export default function Intro() {
     relaxationRating,
     name,
     description,
+    images,
   } = useSelector((state: RootState) => state.vacation)
 
   const stats = [
@@ -20,13 +23,29 @@ export default function Intro() {
     { name: 'Relaxation rating', value: relaxationRating },
   ]
 
+  const { url, alt, width, height, userName, user } = images[0]
+
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
-      <img
-        src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
-        alt=""
-        className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
+      <Image
+        priority
+        quality={75}
+        src={url}
+        alt={alt}
+        width={width}
+        height={height}
+        className="absolute inset-0 -z-10 h-full w-full object-cover object-right brightness-50 md:object-center"
       />
+      <div className="absolute bottom-0 right-0 m-1 px-4 py-2 text-xs italic text-white text-opacity-50">
+        <span>Image by: </span>
+        <Link
+          href={user}
+          className="text-white text-opacity-50 underline hover:text-opacity-70"
+          target="_blank"
+        >
+          {userName}
+        </Link>
+      </div>
       <div
         className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
         aria-hidden="true"

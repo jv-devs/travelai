@@ -11,11 +11,12 @@ import vacationBudgets from './data/vacation-budgets'
 
 import getDreamerSuggestions from '@/lib/getDreamerSuggestions'
 import getVacationLocationData from '@/lib/getVacationLocationData'
-import getCurrentWeather from '@/lib/getCurrentWeather'
+// import getCurrentWeather from '@/lib/getCurrentWeather'
 
 import { fade } from '@/lib/animations'
-import { setLoading, updateField } from '@/app/store/vacationSlice'
+import { updateField } from '@/app/store/vacationSlice'
 import store from '@/app/store'
+import getLocationImages from '@/lib/getLocationImages'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -64,23 +65,33 @@ export default function Dreamer() {
       travelSeason: userInputData.travelSeason,
       vacationType: userInputData.vacationType,
     }
-    console.log({ userChoice })
+    // console.log({ userChoice })
 
-    store.dispatch(setLoading(true))
-    // promise.all!!!
-    const data = await getVacationLocationData(userChoice)
-    console.log('data', data)
-    const currentWeather = await getCurrentWeather(userChoice.destination)
-    console.log('currentWeather', currentWeather)
-    const vacationData = {
-      ...data,
-      currentWeather,
+    store.dispatch(updateField({ loading: true }))
+
+    try {
+      await Promise.all([
+        // const [data, currentWeather, images] = await Promise.all([
+        getLocationImages(userChoice.destination).then((images) => {
+          console.log('dispatching images')
+          store.dispatch(updateField(images))
+        }),
+        getVacationLocationData(userChoice).then((data) => {
+          console.log('dispatching AI data')
+          store.dispatch(updateField(data))
+        }),
+        // getCurrentWeather(userChoice.destination).then((currentWeather) => {
+        //   store.dispatch(updateField(currentWeather))
+        // }),
+      ])
+
+      router.push('/home/planner')
+    } catch (error) {
+      // TODO: handle error
+      console.log(error)
     }
-    store.dispatch(updateField(vacationData))
-    store.dispatch(updateField(data))
-    store.dispatch(setLoading(false))
 
-    router.push('/home/planner')
+    store.dispatch(updateField({ loading: false }))
   }
 
   return (

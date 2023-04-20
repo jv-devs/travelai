@@ -25,6 +25,15 @@ interface LocalPhrases {
   [key: string]: string
 }
 
+interface Image {
+  url: string
+  width: number
+  height: number
+  alt: string
+  userName: string
+  user: string
+}
+
 interface VacationState {
   name: string
   description: string
@@ -45,6 +54,7 @@ interface VacationState {
   currency: string
   relaxationRating: number
   loading: boolean
+  images: Image[]
 }
 
 const initialState: VacationState = {
@@ -60,7 +70,7 @@ const initialState: VacationState = {
     conditions: 'Sunny',
     humidity: 75,
     wind: 7,
-    daylightHours: "24",
+    daylightHours: '24',
   },
   exchangeRate: {
     from: 'USD',
@@ -103,6 +113,32 @@ const initialState: VacationState = {
   travelSeason: 'peak season',
   vacationType: 'beach vacation',
   loading: true,
+  images: [
+    {
+      url: 'https://images.unsplash.com/photo-1533743914085-403451366d53?crop=entropy&cs=srgb&fm=jpg&ixid=Mnw0Mzg3MDF8MHwxfHNlYXJjaHwxfHxjYW5jdW4lMjBtZXhpY298ZW58MHx8fHwxNjgyMDE0MzQz&ixlib=rb-4.0.3&q=85',
+      width: 6000,
+      height: 4000,
+      alt: 'assorted wooden hut near body of water',
+      userName: 'Josh Hammond',
+      user: 'https://unsplash.com/@theoracle',
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1510097467424-192d713fd8b2?crop=entropy&cs=srgb&fm=jpg&ixid=Mnw0Mzg3MDF8MHwxfHNlYXJjaHwyfHxjYW5jdW4lMjBtZXhpY298ZW58MHx8fHwxNjgyMDE0MzQz&ixlib=rb-4.0.3&q=85',
+      width: 4096,
+      height: 2160,
+      alt: 'aerial photo of white buildings',
+      userName: 'Gerson Repreza',
+      user: 'https://unsplash.com/@gersonrepreza',
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1570737543098-0983d88f796d?crop=entropy&cs=srgb&fm=jpg&ixid=Mnw0Mzg3MDF8MHwxfHNlYXJjaHwzfHxjYW5jdW4lMjBtZXhpY298ZW58MHx8fHwxNjgyMDE0MzQz&ixlib=rb-4.0.3&q=85',
+      width: 3781,
+      height: 3200,
+      alt: 'dock during daytime',
+      userName: 'Andreas M',
+      user: 'https://unsplash.com/@nextvoyage_pl',
+    },
+  ],
 }
 
 const vacationSlice = createSlice({
@@ -112,13 +148,10 @@ const vacationSlice = createSlice({
     updateField: (state, action: PayloadAction<Partial<VacationState>>) => {
       return { ...state, ...action.payload }
     },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      return { ...state, loading: action.payload }
-    },
   },
 })
 
-export const { updateField, setLoading } = vacationSlice.actions
+export const { updateField } = vacationSlice.actions
 
 export const selectVacation = (state: RootState) => state.vacation
 
