@@ -146,6 +146,7 @@ const vacationSlice = createSlice({
   initialState,
   reducers: {
     updateField: (state, action: PayloadAction<Partial<VacationState>>) => {
+      // console.log('ACTION Payload: ', action.payload);
       return { ...state, ...action.payload }
     },
   },

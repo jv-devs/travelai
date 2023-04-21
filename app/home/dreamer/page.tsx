@@ -77,18 +77,22 @@ export default function Dreamer() {
           console.log('dispatching images')
           store.dispatch(updateField(images))
         }),
-        getVacationLocationData(userChoice).then((data) => {
-          console.log('dispatching AI data')
-          store.dispatch(updateField(data))
-        }),
+        getVacationLocationData(userChoice)
+          .then((data) => {
+            console.log('dispatching AI data')
+            store.dispatch(updateField(data))
+            return data.currencyCode
+          })
+          .then((currencyCode) => {
+            getExchangeRate(currencyCode).then((exchangeRate) => {
+              console.log('dispatching exchange rate data')
+              store.dispatch(updateField(exchangeRate))
+            })
+          }),
         // getCurrentWeather(userChoice.destination).then((currentWeather) => {
         //   store.dispatch(updateField(currentWeather))
         // }),
       ])
-      await getExchangeRate('EUR').then((exchangeRate) => {
-        console.log('dispatching exchange rate data')
-        store.dispatch(updateField(exchangeRate))
-      })
       router.push('/home/planner')
     } catch (error) {
       // TODO: handle error
