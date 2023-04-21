@@ -112,7 +112,7 @@ const initialState: VacationState = {
   vacationBudget: 'budget-friendly',
   travelSeason: 'peak season',
   vacationType: 'beach vacation',
-  loading: true,
+  loading: false,
   images: [
     {
       url: 'https://images.unsplash.com/photo-1533743914085-403451366d53?crop=entropy&cs=srgb&fm=jpg&ixid=Mnw0Mzg3MDF8MHwxfHNlYXJjaHwxfHxjYW5jdW4lMjBtZXhpY298ZW58MHx8fHwxNjgyMDE0MzQz&ixlib=rb-4.0.3&q=85',
