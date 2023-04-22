@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import vacationReducer from './vacationSlice'
+
+import vacationReducer from './slices/vacationSlice'
 
 const store = configureStore({
   reducer: {
@@ -7,7 +8,6 @@ const store = configureStore({
   },
 })
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+store.subscribe(() => console.log(store.getState()))
 
 export default store

@@ -1,7 +1,7 @@
 import Footer from './components/Footer'
 import { Quicksand } from 'next/font/google'
 import './globals.css'
-import Providers from './store/provider'
+import Provider from './store/provider'
 import { AuthProvider } from './context/UserContext'
 
 const quicksand = Quicksand({
@@ -23,10 +23,10 @@ export default function RootLayout({
     <html lang="en" className={`${quicksand.variable} h-full font-sans`}>
       <body className="flex h-full min-h-screen flex-col bg-slate-300">
         <AuthProvider>
-          <Providers>
+          <Provider>
             {children}
             <Footer />
-          </Providers>
+          </Provider>
         </AuthProvider>
       </body>
     </html>

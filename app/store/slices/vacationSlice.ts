@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '.'
 
 interface Weather {
   temperature: string
@@ -146,14 +145,11 @@ const vacationSlice = createSlice({
   initialState,
   reducers: {
     updateField: (state, action: PayloadAction<Partial<VacationState>>) => {
-      // console.log('ACTION Payload: ', action.payload);
       return { ...state, ...action.payload }
     },
   },
 })
 
 export const { updateField } = vacationSlice.actions
-
-export const selectVacation = (state: RootState) => state.vacation
 
 export default vacationSlice.reducer

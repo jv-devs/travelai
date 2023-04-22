@@ -1,4 +1,4 @@
-import { updateField } from '@/app/store/vacationSlice'
+import { updateField } from '@/app/store/slices/vacationSlice'
 import store from '@/app/store'
 
 export default function ReduxTestButtons() {

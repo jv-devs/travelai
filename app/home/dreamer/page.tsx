@@ -14,7 +14,7 @@ import getVacationLocationData from '@/lib/getVacationLocationData'
 // import getCurrentWeather from '@/lib/getCurrentWeather'
 
 import { fade } from '@/lib/animations'
-import { updateField } from '@/app/store/vacationSlice'
+import { updateField } from '@/app/store/slices/vacationSlice'
 import store from '@/app/store'
 import getLocationImages from '@/lib/getLocationImages'
 import getExchangeRate from '@/lib/getExchangeRate'
