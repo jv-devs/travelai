@@ -1,4 +1,4 @@
-import { Fragment, useContext } from 'react'
+import { Fragment } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -8,8 +8,10 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { PlusIcon } from '@heroicons/react/20/solid'
 
-import AuthContext from '@/app/context/UserContext'
 import { slideFromLeft } from '@/lib/animations'
+import { useSelector } from 'react-redux'
+import store, { RootState } from '@/app/store'
+import { handleSignOut } from '@/app/store/slices/authSlice'
 
 const links = [
   { href: '/home', label: 'Home' },
@@ -25,10 +27,16 @@ function classNames(...classes: string[]) {
 
 export default function Navbar() {
   const path = usePathname()
-  const { handleSignOut, currentUser } = useContext(AuthContext)
+  const currentUser = useSelector((state: RootState) => state.auth.currentUser)
+
+  const signOut = () => {
+    store.dispatch(handleSignOut())
+  }
+
   const displayName = currentUser?.displayName
   const email = currentUser?.email
   const photoURL = currentUser?.photoURL
+
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -155,7 +163,7 @@ export default function Navbar() {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              onClick={() => handleSignOut()}
+                              onClick={() => signOut()}
                               href="/"
                               className={classNames(
                                 active ? 'bg-gray-100' : '',
@@ -238,7 +246,7 @@ export default function Navbar() {
                   as={Link}
                   href="/"
                   className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 sm:px-6"
-                  onClick={() => handleSignOut()}
+                  onClick={() => signOut()}
                 >
                   Sign out
                 </Disclosure.Button>

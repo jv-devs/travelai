@@ -1,10 +1,9 @@
 'use client'
 
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { signIn } from './database/firebase'
-import AuthContext from './context/UserContext'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -17,6 +16,8 @@ import {
   staggerImages,
 } from '@/lib/animations'
 import AnimatedWords from './components/AnimatedWords'
+import { useSelector } from 'react-redux'
+import { RootState } from './store'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -26,8 +27,9 @@ const navigation = [
 ]
 
 export default function App() {
+  // get currentUser from authSlice
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { currentUser } = useContext(AuthContext)
+  const currentUser = useSelector((state: RootState) => state.auth.currentUser)
   const router = useRouter()
 
   useEffect(() => {

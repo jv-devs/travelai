@@ -9,6 +9,7 @@ const openai = new OpenAIApi(new Configuration(configuration))
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
+  console.log('search params: ', searchParams)
   const origin = searchParams.get('origin') || ''
   const vacationBudget = searchParams.get('vacationBudget') || ''
   const travelSeason = searchParams.get('travelSeason') || ''

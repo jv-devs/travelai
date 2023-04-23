@@ -24,7 +24,7 @@ export default function CustomLoadingAnimation() {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-4 px-4 sm:px-6 lg:px-8">
         {/* Loader and Message */}
         <div className="mx-auto max-w-xl rounded px-6 py-4">
-          <p className="text-2xl">{randomLoadingMessage}...</p>
+          <div className="text-2xl">{randomLoadingMessage}...</div>
           <div className="mt-4 flex items-center justify-center">
             <svg
               className="-ml-1 mr-3 h-32 w-32 animate-spin text-slate-500"
@@ -51,7 +51,7 @@ export default function CustomLoadingAnimation() {
         {/* Fact Component */}
         <div className="mx-auto max-w-xl rounded bg-white bg-opacity-30 px-6 py-4">
           <h2 className="text-center italic">Did you know...</h2>
-          <p className="mt-2 text-sm">{randomFact}</p>
+          <div className="mt-2 text-sm">{randomFact}</div>
         </div>
       </div>
     </div>
