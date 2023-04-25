@@ -16,7 +16,7 @@ export default function Dreamer() {
 
   return (
     <motion.main
-      className="justify-content flex flex-1 items-center bg-slate-300"
+      className="justify-content flex flex-1 items-center bg-dreamer bg-cover bg-center"
       initial="initial"
       animate="animate"
       exit="exit"

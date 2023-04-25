@@ -19,6 +19,10 @@ module.exports = {
           900: '#fe4a49',
         },
       },
+      backgroundImage: {
+        dreamer: "url('/images/sean-oulashin-KMn4VEeEPR8-unsplash.jpg')",
+        builder: "url('/images/heidi-kaden-kYxgm42SQso-unsplash.jpg')",
+      },
     },
   },
   plugins: [require('@tailwindcss/forms')],
