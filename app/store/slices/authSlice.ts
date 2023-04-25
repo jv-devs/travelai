@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { auth } from '@/app/database/firebase'
+import { auth } from '@/app/firebase'
 
 interface AuthState {
   currentUser: AppUser | null
