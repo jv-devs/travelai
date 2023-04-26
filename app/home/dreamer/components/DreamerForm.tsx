@@ -15,6 +15,7 @@ import {
 } from '@/app/store/slices/dreamerSlice'
 import { RootState } from '@/app/store'
 import { useAppDispatch } from '@/app/store/hooks'
+import checkOrigin from '@/lib/checkOrigin'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -35,9 +36,14 @@ export default function DreamerForm({}) {
     const userInputs: UserInputData = Object.fromEntries(
       formData.entries()
     ) as UserInputData
-
-    dispatch(setUserInputData(userInputs))
-    dispatch(getSuggestions(userInputs))
+    const origin = userInputs.origin
+    const originValid = await checkOrigin(origin)
+    if (originValid) {
+      dispatch(setUserInputData(userInputs))
+      dispatch(getSuggestions(userInputs))
+    } else {
+      throw new Error(`${origin} does not exist. Please enter a valid location`)
+    }
   }
 
   return (
