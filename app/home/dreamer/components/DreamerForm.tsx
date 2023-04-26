@@ -13,7 +13,7 @@ import {
   setUserInputData,
 } from '@/app/store/slices/dreamerSlice'
 import { useAppDispatch } from '@/app/store/hooks'
-import checkOrigin from '@/lib/checkOrigin'
+import checkLocation from '@/lib/checkLocation'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -34,7 +34,7 @@ export default function DreamerForm({}) {
       formData.entries()
     ) as UserInputData
     const origin = userInputs.origin
-    const originValid = await checkOrigin(origin)
+    const originValid = await checkLocation(origin)
     if (originValid) {
       dispatch(setUserInputData(userInputs))
       dispatch(getSuggestions(userInputs))
