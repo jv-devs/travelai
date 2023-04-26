@@ -41,7 +41,7 @@ export default function Builder() {
       animate="animate"
       exit="exit"
       variants={fade}
-      className="flex-1 bg-slate-300"
+      className="flex-1 bg-builder bg-cover bg-center"
     >
       <div className="container mx-auto">
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">

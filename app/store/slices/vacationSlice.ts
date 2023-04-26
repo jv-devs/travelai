@@ -1,5 +1,10 @@
+import getExchangeRate from '@/lib/getExchangeRate'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '.'
+import store from '..'
+import { setLoadingPlanner } from './appStateSlice'
+import getLocationImages from '@/lib/getLocationImages'
+import getVacationLocationData from '@/lib/getVacationLocationData'
+import { setUserChoiceData } from './dreamerSlice'
 
 interface Weather {
   temperature: string
@@ -53,7 +58,7 @@ interface VacationState {
   climate: string
   currency: string
   relaxationRating: number
-  loading: boolean
+  plannerLoading: boolean
   images: Image[]
 }
 
@@ -112,7 +117,7 @@ const initialState: VacationState = {
   vacationBudget: 'budget-friendly',
   travelSeason: 'peak season',
   vacationType: 'beach vacation',
-  loading: true,
+  plannerLoading: false,
   images: [
     {
       url: 'https://images.unsplash.com/photo-1533743914085-403451366d53?crop=entropy&cs=srgb&fm=jpg&ixid=Mnw0Mzg3MDF8MHwxfHNlYXJjaHwxfHxjYW5jdW4lMjBtZXhpY298ZW58MHx8fHwxNjgyMDE0MzQz&ixlib=rb-4.0.3&q=85',
@@ -148,11 +153,44 @@ const vacationSlice = createSlice({
     updateField: (state, action: PayloadAction<Partial<VacationState>>) => {
       return { ...state, ...action.payload }
     },
+    updateVacationData: (
+      state,
+      action: PayloadAction<Partial<VacationState>>
+    ) => {
+      return { ...state, ...action.payload }
+    },
   },
 })
 
-export const { updateField } = vacationSlice.actions
+export const { updateField, updateVacationData } = vacationSlice.actions
 
-export const selectVacation = (state: RootState) => state.vacation
+export const getVacation = (userChoice: UserChoiceData) => {
+  return async (dispatch: any) => {
+    dispatch(setLoadingPlanner(true))
+    dispatch(setUserChoiceData(userChoice))
+    try {
+      // const [currentWeather, images, vacationLocationData] = await Promise.all([
+      const [images, vacationLocationData] = await Promise.all([
+        // getCurrentWeather(userChoice.destination)
+        getLocationImages(userChoice.destination),
+        getVacationLocationData(userChoice),
+      ])
+
+      // store.dispatch(updateField(currentWeather))
+      store.dispatch(updateField(images))
+      store.dispatch(updateField(vacationLocationData))
+
+      const currencyCode = vacationLocationData.currencyCode
+      const exchangeRate = await getExchangeRate(currencyCode)
+      store.dispatch(updateField(exchangeRate))
+    } catch (error) {
+      // TODO: handle error
+      console.log(error)
+    } finally {
+      console.log('finally')
+      store.dispatch(setLoadingPlanner(false))
+    }
+  }
+}
 
 export default vacationSlice.reducer

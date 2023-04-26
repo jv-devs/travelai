@@ -6,5 +6,5 @@ export default function getDaylightHours(sunriseUnix: number, sunsetUnix: number
   const daylightMinutes = (sunsetDate.getTime() - sunriseDate.getTime()) / (1000 * 60);
   const daylightHours = (daylightMinutes / 60).toFixed(2);
 
-  return daylightHours
+  return daylightHours;
 }

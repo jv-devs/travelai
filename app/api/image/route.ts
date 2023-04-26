@@ -13,7 +13,7 @@ export async function GET(request: Request) {
     // console.log('DATA: ', data)
     const rawPhotos = data.results.slice(0, 3)
     // console.log('PHOTOS: ', rawPhotos);
-    const processedPhotos = rawPhotos.map((photo: any) => {
+    const images = rawPhotos.map((photo: any) => {
       const width = photo.width
       const height = photo.height
       const alt = photo.alt_description
@@ -23,7 +23,7 @@ export async function GET(request: Request) {
       return { url, width, height, alt, userName, user }
     })
     // console.log('PROCESSED: ', processedPhotos);
-    return NextResponse.json(processedPhotos)
+    return NextResponse.json({ images })
   } catch (error: any) {
     return NextResponse.json(
       { message: error.message },

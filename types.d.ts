@@ -13,15 +13,22 @@ type BuilderResult = {
 }
 
 type UserInputData = {
-  origin: string,
-  vacationBudget: string,
-  travelSeason: string,
+  origin: string
+  vacationBudget: string
+  travelSeason: string
   vacationType: string
 }
 
 type UserChoiceData = {
-  destination: string,
-  vacationBudget: string,
-  travelSeason: string,
+  destination: string
+  vacationBudget: string
+  travelSeason: string
   vacationType: string
+}
+
+type AppUser = {
+  uid: string
+  email: string
+  displayName: string
+  photoURL: string
 }

@@ -1,10 +1,16 @@
 'use client'
 
-import { Provider } from 'react-redux'
+import { Provider as ReduxProvider } from 'react-redux'
 import store from '@/app/store'
+import { useEffect } from 'react'
+import { authStateChanged } from './slices/authSlice'
 
-function Providers({ children }: { children: React.ReactNode }) {
-  return <Provider store={store}>{children}</Provider>
+function Provider({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    store.dispatch(authStateChanged())
+  }, [])
+
+  return <ReduxProvider store={store}>{children}</ReduxProvider>
 }
 
-export default Providers
+export default Provider
