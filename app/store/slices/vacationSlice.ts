@@ -5,6 +5,7 @@ import { setLoadingPlanner } from './appStateSlice'
 import getLocationImages from '@/lib/getLocationImages'
 import getVacationLocationData from '@/lib/getVacationLocationData'
 import { setUserChoiceData } from './dreamerSlice'
+import { incrementTokensUsed } from './authSlice'
 
 interface Weather {
   temperature: string
@@ -188,6 +189,10 @@ export const getVacation = (userChoice: UserChoiceData) => {
       console.log(error)
     } finally {
       console.log('finally')
+      const { currentUser } = store.getState().auth
+      if (currentUser) {
+        store.dispatch(incrementTokensUsed(currentUser))
+      }
       store.dispatch(setLoadingPlanner(false))
     }
   }
