@@ -8,6 +8,7 @@ import getBuilderSuggestions from '@/lib/getBuilderSuggestions'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { fade } from '@/lib/animations'
+import { BuilderResult } from '@/types'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')

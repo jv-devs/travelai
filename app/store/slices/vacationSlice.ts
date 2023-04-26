@@ -5,63 +5,10 @@ import { setLoadingPlanner } from './appStateSlice'
 import getLocationImages from '@/lib/getLocationImages'
 import getVacationLocationData from '@/lib/getVacationLocationData'
 import { setUserChoiceData } from './dreamerSlice'
-import { incrementTokensUsed } from './authSlice'
-
-interface Weather {
-  temperature: string
-  conditions: string
-  humidity: string
-}
-
-interface CurrentWeather {
-  temp: number
-  conditions: string
-  humidity: number
-  wind: number
-  daylightHours: string
-}
-
-interface ExchangeRate {
-  from: string
-  to: string
-  rate: number
-}
-
-interface LocalPhrases {
-  [key: string]: string
-}
-
-interface Image {
-  url: string
-  width: number
-  height: number
-  alt: string
-  userName: string
-  user: string
-}
-
-interface VacationState {
-  name: string
-  description: string
-  vacationBudget: string
-  travelSeason: string
-  vacationType: string
-  weather: Weather
-  currentWeather: CurrentWeather
-  exchangeRate: ExchangeRate
-  needToKnow: string[]
-  niceToKnow: string[]
-  localPhrases: LocalPhrases
-  activitySuggestionsList: string[]
-  funFacts: string[]
-  greeting: string
-  localLanguage: string
-  climate: string
-  currency: string
-  relaxationRating: number
-  plannerLoading: boolean
-  images: Image[]
-}
+import { getUserHistory, incrementTokensUsed } from './authSlice'
+import { db } from '@/app/firebase'
+import { addDoc, collection } from 'firebase/firestore'
+import { UserChoiceData, VacationState } from '@/types'
 
 const initialState: VacationState = {
   name: 'Cancun, Mexico',
@@ -184,6 +131,17 @@ export const getVacation = (userChoice: UserChoiceData) => {
       const currencyCode = vacationLocationData.currencyCode
       const exchangeRate = await getExchangeRate(currencyCode)
       store.dispatch(updateField(exchangeRate))
+
+      // add current vacationState to firestore database 'history' collection
+      const { currentUser } = store.getState().auth
+      if (currentUser) {
+        await addDoc(collection(db, 'history'), {
+          vacation: { ...store.getState().vacation },
+          uid: currentUser.uid,
+          date: new Date(),
+        })
+        store.dispatch(getUserHistory(currentUser.uid))
+      }
     } catch (error) {
       // TODO: handle error
       console.log(error)

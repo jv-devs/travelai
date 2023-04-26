@@ -19,7 +19,7 @@ const links = [
   { href: '/home/dreamer', label: 'Dreamer' },
   { href: '/home/builder', label: 'Builder' },
   { href: '/home/planner', label: 'Planner' },
-  { href: '/home/about', label: 'About' },
+  { href: '/home/history', label: 'History' },
 ]
 
 function classNames(...classes: string[]) {

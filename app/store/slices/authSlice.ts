@@ -1,17 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { auth, db } from '@/app/firebase'
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from 'firebase/firestore'
+import { AppUser, HistoryType } from '@/types'
 
 interface AuthState {
   currentUser: AppUser | null
   isLoading: boolean
   tokensUsed: number
+  history: HistoryType[]
 }
 
 const initialState: AuthState = {
   currentUser: null,
   isLoading: true,
   tokensUsed: 0,
+  history: [],
 }
 
 export const authSlice = createSlice({
@@ -27,10 +39,22 @@ export const authSlice = createSlice({
     setTokensUsed: (state, action: PayloadAction<number>) => {
       state.tokensUsed = action.payload
     },
+    setUserHistory: (state, action: PayloadAction<HistoryType[]>) => {
+      state.history = action.payload
+    },
+    addToUserHistory: (state, action: PayloadAction<HistoryType>) => {
+      state.history.push(action.payload)
+    },
   },
 })
 
-export const { setCurrentUser, setIsLoading, setTokensUsed } = authSlice.actions
+export const {
+  setCurrentUser,
+  setIsLoading,
+  setTokensUsed,
+  setUserHistory,
+  addToUserHistory,
+} = authSlice.actions
 
 export const handleSignOut = () => {
   return () => {
@@ -53,6 +77,28 @@ export const incrementTokensUsed = (user: AppUser) => {
       console.log('token incremented in db and state!')
     } else {
       console.log('User does not exist in db!')
+    }
+  }
+}
+
+// get array of documents with matching uid from history collection
+export const getUserHistory = (uid: string) => {
+  return async (dispatch: any) => {
+    const historyRef = collection(db, 'history')
+    const q = query(historyRef, where('uid', '==', uid))
+    const querySnapshot = await getDocs(q)
+    if (!querySnapshot.empty) {
+      const history: HistoryType[] = []
+      querySnapshot.forEach((doc) => {
+        const { date, uid, vacation } = doc.data()
+        // convert date to serializable date
+        const serializableDate = {
+          seconds: date.seconds,
+          nanoseconds: date.nanoseconds,
+        }
+        history.push({ date: serializableDate, uid, vacation } as HistoryType)
+      })
+      dispatch(setUserHistory(history))
     }
   }
 }
@@ -112,6 +158,7 @@ export const authStateChanged = () => {
           const { tokensUsed } = docSnap.data()
           console.log('tokens used', tokensUsed)
           dispatch(setTokensUsed(tokensUsed))
+          dispatch(getUserHistory(user.uid))
         }
       } else {
         user = null

@@ -15,6 +15,7 @@ import {
 } from '@/app/store/slices/dreamerSlice'
 import { RootState } from '@/app/store'
 import { useAppDispatch } from '@/app/store/hooks'
+import { UserInputData } from '@/types'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')

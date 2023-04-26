@@ -3,6 +3,7 @@ import { setLoadingSuggestions } from './appStateSlice'
 import getDreamerSuggestions from '@/lib/getDreamerSuggestions'
 import { AppDispatch } from '../index'
 import { AppThunk } from '../index'
+import { DreamerResult, UserChoiceData, UserInputData } from '@/types'
 
 interface DreamerState {
   showSuggestions: boolean
