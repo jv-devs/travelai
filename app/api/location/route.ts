@@ -9,11 +9,11 @@ const openai = new OpenAIApi(new Configuration(configuration))
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const origin = searchParams.get('origin') || ''
+  const location = searchParams.get('location') || ''
 
   const completion = await openai.createCompletion({
     model: 'text-davinci-003',
-    prompt: generatePrompt(origin),
+    prompt: generatePrompt(location),
     max_tokens: 500,
     temperature: 0,
   })
@@ -23,7 +23,7 @@ export async function GET(request: Request) {
   return NextResponse.json({ result })
 }
 
-function generatePrompt(origin: string) {
+function generatePrompt(location: string) {
   return `Determine if the location exists on Earth. Ignore diacritics but spelling should be correct.
   Example Input: Voëlklip 
   Example Output: true
@@ -33,7 +33,7 @@ function generatePrompt(origin: string) {
   Example Output: false
   Example Input: kgsdfjsdmg$fb324324 
   Example Output: false
-  Input: ${origin}
+  Input: ${location}
   Output:
 `
 }
