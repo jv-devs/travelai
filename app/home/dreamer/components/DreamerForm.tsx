@@ -1,7 +1,6 @@
 'use client'
 
-import { FormEvent, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { FormEvent, useState } from 'react'
 import { motion } from 'framer-motion'
 
 import vacationTypes from '../data/vacation-types'
@@ -13,7 +12,6 @@ import {
   getSuggestions,
   setUserInputData,
 } from '@/app/store/slices/dreamerSlice'
-import { RootState } from '@/app/store'
 import { useAppDispatch } from '@/app/store/hooks'
 import checkOrigin from '@/lib/checkOrigin'
 
@@ -22,16 +20,15 @@ function classNames(...classes: string[]) {
 }
 
 export default function DreamerForm({}) {
+  const [validOrigin, setValidOrigin] = useState(true)
+  const [submitting, setSubmitting] = useState(false)
   const dispatch = useAppDispatch()
-  const loadingSuggestions = useSelector(
-    (state: RootState) => state.appState.loadingSuggestions
-  )
-
-  useEffect(() => {})
 
   // user submits form
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setValidOrigin(true)
+    setSubmitting(true)
     const formData = new FormData(e.currentTarget)
     const userInputs: UserInputData = Object.fromEntries(
       formData.entries()
@@ -42,7 +39,8 @@ export default function DreamerForm({}) {
       dispatch(setUserInputData(userInputs))
       dispatch(getSuggestions(userInputs))
     } else {
-      throw new Error(`${origin} does not exist. Please enter a valid location`)
+      setValidOrigin(false)
+      setSubmitting(false)
     }
   }
 
@@ -69,8 +67,12 @@ export default function DreamerForm({}) {
               placeholder="Origin"
               required
             />
+            {!validOrigin && (
+              <p className="text-sm font-bold text-red-600">
+                * Origin not valid.
+              </p>
+            )}
           </div>
-
           <div>
             <label
               htmlFor="vacationBudget"
@@ -131,12 +133,12 @@ export default function DreamerForm({}) {
           <button
             className={classNames(
               'rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600',
-              loadingSuggestions
+              submitting
                 ? 'cursor-not-allowed bg-indigo-300 hover:bg-indigo-300'
                 : ''
             )}
           >
-            {loadingSuggestions ? 'Getting suggestions...' : 'Dream'}
+            {submitting ? 'Getting suggestions...' : 'Dream'}
           </button>
         </form>
       </div>
