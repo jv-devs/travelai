@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React, { useEffect } from 'react'
 
 import { loadingMessages } from '../data/loadingMessages'
@@ -21,36 +22,23 @@ export default function CustomLoadingAnimation() {
   }, [])
 
   return (
-    <div className="flex h-full items-center justify-center bg-slate-300">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-4 px-4 sm:px-6 lg:px-8">
+    <div className="flex h-full items-center justify-center bg-theme-750">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-4 px-4 text-center text-white sm:px-6 lg:px-8">
         {/* Loader and Message */}
         <div className="mx-auto max-w-xl rounded px-6 py-4">
           <div className="text-2xl">{randomLoadingMessage}...</div>
-          <div className="mt-4 flex items-center justify-center">
-            <svg
-              className="-ml-1 mr-3 h-32 w-32 animate-spin text-slate-500"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8v8z"
-              ></path>
-            </svg>
+          <div className="mt-4 flex w-full items-center justify-center">
+            <Image
+              src="/plane-loader.gif"
+              alt="Plane Loader"
+              width={100}
+              height={100}
+              className="w-full"
+            />
           </div>
         </div>
         {/* Fact Component */}
-        <div className="mx-auto max-w-xl rounded bg-white bg-opacity-30 px-6 py-4">
+        <div className="mx-auto max-w-xl rounded bg-white bg-opacity-20 px-6 py-4">
           <h2 className="text-center italic">Did you know...</h2>
           <div className="mt-2 text-sm">{randomFact}</div>
         </div>

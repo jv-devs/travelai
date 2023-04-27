@@ -1,5 +1,6 @@
-import { UserChoiceData } from '@/types'
 import axios from 'axios'
+
+import { UserChoiceData } from '@/types'
 
 export default async function getVacationLocationData(
   userInputs: UserChoiceData
