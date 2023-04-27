@@ -131,26 +131,13 @@ export default function Navbar() {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              href="#"
+                              href="/home"
                               className={classNames(
                                 active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700'
+                                'block cursor-not-allowed px-4 py-2 text-sm text-gray-700'
                               )}
                             >
                               Your Profile
-                            </Link>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Link
-                              href="#"
-                              className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700'
-                              )}
-                            >
-                              Settings
                             </Link>
                           )}
                         </Menu.Item>
@@ -220,17 +207,10 @@ export default function Navbar() {
               <div className="mt-3 space-y-1">
                 <Disclosure.Button
                   as={Link}
-                  href="#"
+                  href="/home"
                   className="block cursor-not-allowed px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 sm:px-6"
                 >
                   Your Profile
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as={Link}
-                  href="#"
-                  className="block cursor-not-allowed px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 sm:px-6"
-                >
-                  Settings
                 </Disclosure.Button>
                 <Disclosure.Button
                   as={Link}

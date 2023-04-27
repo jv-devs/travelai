@@ -20,10 +20,8 @@ import { useSelector } from 'react-redux'
 import { RootState } from './store'
 
 const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'About', href: '#' },
+  { name: 'Preview', href: '#' },
 ]
 
 export default function App() {
@@ -81,7 +79,7 @@ export default function App() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-semibold leading-6 text-gray-900"
+                className="cursor-not-allowed text-sm font-semibold leading-6 text-gray-900"
               >
                 {item.name}
               </Link>
@@ -131,7 +129,7 @@ export default function App() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      className="-mx-3 block cursor-not-allowed rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
                       {item.name}
                     </Link>

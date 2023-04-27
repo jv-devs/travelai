@@ -1,3 +1,4 @@
+import { UserChoiceData } from '@/types'
 import axios from 'axios'
 
 // build out type/interface for parameter

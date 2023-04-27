@@ -68,7 +68,6 @@ type VacationState = {
   travelSeason: string
   vacationType: string
   weather: Weather
-  currentWeather: CurrentWeather
   exchangeRate: ExchangeRate
   needToKnow: string[]
   niceToKnow: string[]
