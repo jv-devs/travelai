@@ -10,6 +10,7 @@ export default function NeedToKnow() {
   )
   return (
     <div className="bg-white px-4 py-5 sm:px-6">
+      <h2 className="pb-6 text-center text-2xl">Need To Know</h2>
       <ul role="list">
         {needToKnow.map((string, idx) => (
           <li key={idx} className="px-6 py-4">

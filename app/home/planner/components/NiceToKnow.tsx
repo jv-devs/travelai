@@ -10,6 +10,7 @@ export default function NiceToKnow() {
   )
   return (
     <div className="bg-white px-4 py-5 sm:px-6">
+      <h2 className="pb-6 text-center text-2xl">Nice To Know</h2>
       <ul role="list">
         {niceToKnow.map((string, idx) => (
           <li key={idx} className="px-6 py-4">
