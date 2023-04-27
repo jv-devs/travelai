@@ -1,9 +1,9 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 
-import vacationReducer from './slices/vacationSlice'
-import dreamerReducer from './slices/dreamerSlice'
 import appStateReducer from './slices/appStateSlice'
 import authReducer from './slices/authSlice'
+import dreamerReducer from './slices/dreamerSlice'
+import vacationReducer from './slices/vacationSlice'
 
 const store = configureStore({
   reducer: {

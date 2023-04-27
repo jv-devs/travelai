@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { auth, db } from '@/app/firebase'
 import {
   collection,
   doc,
@@ -10,6 +9,8 @@ import {
   updateDoc,
   where,
 } from 'firebase/firestore'
+
+import { auth, db } from '@/app/firebase'
 import { AppUser, HistoryType } from '@/types'
 
 interface AuthState {

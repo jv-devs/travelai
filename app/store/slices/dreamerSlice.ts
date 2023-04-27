@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { setLoadingSuggestions } from './appStateSlice'
+
 import getDreamerSuggestions from '@/lib/getDreamerSuggestions'
+import { DreamerResult, UserChoiceData, UserInputData } from '@/types'
+
 import { AppDispatch } from '../index'
 import { AppThunk } from '../index'
-import { DreamerResult, UserChoiceData, UserInputData } from '@/types'
+import { setLoadingSuggestions } from './appStateSlice'
 
 interface DreamerState {
   showSuggestions: boolean

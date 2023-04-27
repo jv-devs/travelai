@@ -1,6 +1,7 @@
 'use client'
 
 import { useSelector } from 'react-redux'
+
 import { RootState } from '@/app/store'
 
 export default function Weather() {
@@ -14,20 +15,23 @@ export default function Weather() {
   ]
   return (
     <div className="py-24 sm:py-32">
+      <h2 className="pb-6 text-center text-2xl">Weather</h2>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
           {stats.map((stat) => (
             <div
               key={stat.id}
               className="mx-auto flex max-w-xs flex-col gap-y-4"
             >
-              <dt className="text-base leading-7 text-gray-600">{stat.name}</dt>
-              <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+              <div className="text-base leading-7 text-gray-600">
+                {stat.name}
+              </div>
+              <div className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
                 {stat.value}
-              </dd>
+              </div>
             </div>
           ))}
-        </dl>
+        </div>
       </div>
     </div>
   )

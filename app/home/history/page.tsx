@@ -1,11 +1,12 @@
 'use client'
 
-import store, { RootState } from '@/app/store'
-import { updateField } from '@/app/store/slices/vacationSlice'
-import { VacationState } from '@/types'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
+
+import store, { RootState } from '@/app/store'
+import { updateField } from '@/app/store/slices/vacationSlice'
+import { VacationState } from '@/types'
 
 type Timestamp = {
   seconds: number

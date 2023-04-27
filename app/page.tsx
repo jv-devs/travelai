@@ -1,13 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { signIn } from './firebase'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+
 import {
   fade,
   imageAnimation,
@@ -15,8 +16,9 @@ import {
   slideFromLeft,
   staggerImages,
 } from '@/lib/animations'
+
 import AnimatedWords from './components/AnimatedWords'
-import { useSelector } from 'react-redux'
+import { signIn } from './firebase'
 import { RootState } from './store'
 
 const navigation = [

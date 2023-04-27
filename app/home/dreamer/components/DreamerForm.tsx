@@ -1,20 +1,20 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
 import { motion } from 'framer-motion'
+import { FormEvent, useState } from 'react'
 
-import vacationTypes from '../data/vacation-types'
-import travelSeasons from '../data/travel-seasons'
-import vacationBudgets from '../data/vacation-budgets'
-
-import { fade } from '@/lib/animations'
+import { useAppDispatch } from '@/app/store/hooks'
 import {
   getSuggestions,
   setUserInputData,
 } from '@/app/store/slices/dreamerSlice'
-import { useAppDispatch } from '@/app/store/hooks'
+import { fade } from '@/lib/animations'
 import checkLocation from '@/lib/checkLocation'
 import { UserInputData } from '@/types'
+
+import travelSeasons from '../data/travel-seasons'
+import vacationBudgets from '../data/vacation-budgets'
+import vacationTypes from '../data/vacation-types'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')

@@ -1,6 +1,7 @@
 'use client'
 
 import { useSelector } from 'react-redux'
+
 import { RootState } from '@/app/store'
 
 export default function ExchangeRate() {
@@ -15,7 +16,8 @@ export default function ExchangeRate() {
   ]
 
   return (
-    <div>
+    <div className="container mx-auto my-6">
+      <h2 className="pb-6 text-center text-2xl">Exchange Rate</h2>
       <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
         {stats.map((item) => (
           <div
