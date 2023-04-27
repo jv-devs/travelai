@@ -7,7 +7,6 @@ import NiceToKnow from './localDetails/NiceToKnow'
 import NeedToKnow from './localDetails/NeedToKnow'
 import Weather from './localDetails/Weather'
 import FunFacts from './localDetails/FunFacts'
-// import CurrentWeather from './localDetails/CurrentWeather'
 
 const cards = [
   {

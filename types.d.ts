@@ -34,14 +34,6 @@ type Weather = {
   humidity: string
 }
 
-type CurrentWeather = {
-  temp: number
-  conditions: string
-  humidity: number
-  wind: number
-  daylightHours: string
-}
-
 type ExchangeRate = {
   from: string
   to: string
@@ -68,7 +60,6 @@ type VacationState = {
   travelSeason: string
   vacationType: string
   weather: Weather
-  currentWeather: CurrentWeather
   exchangeRate: ExchangeRate
   needToKnow: string[]
   niceToKnow: string[]
