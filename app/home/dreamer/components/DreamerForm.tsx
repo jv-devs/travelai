@@ -14,6 +14,7 @@ import {
 } from '@/app/store/slices/dreamerSlice'
 import { useAppDispatch } from '@/app/store/hooks'
 import checkLocation from '@/lib/checkLocation'
+import { UserInputData } from '@/types'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')

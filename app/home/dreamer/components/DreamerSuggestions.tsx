@@ -10,6 +10,7 @@ import { getVacation } from '@/app/store/slices/vacationSlice'
 import store, { RootState } from '@/app/store'
 import { setShowSuggestions } from '@/app/store/slices/dreamerSlice'
 import { useSelector } from 'react-redux'
+import { DreamerResult, UserChoiceData } from '@/types'
 
 export default function DreamerSuggestions() {
   const router = useRouter()

@@ -5,20 +5,21 @@ import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { PlusIcon } from '@heroicons/react/20/solid'
 
 import { slideFromLeft } from '@/lib/animations'
 import { useSelector } from 'react-redux'
 import store, { RootState } from '@/app/store'
 import { handleSignOut } from '@/app/store/slices/authSlice'
+import TokenDisplay from './TokenDisplay'
 
 const links = [
   { href: '/home', label: 'Home' },
   { href: '/home/dreamer', label: 'Dreamer' },
   { href: '/home/builder', label: 'Builder' },
   { href: '/home/planner', label: 'Planner' },
-  { href: '/home/about', label: 'About' },
+  { href: '/home/history', label: 'History' },
 ]
 
 function classNames(...classes: string[]) {
@@ -102,14 +103,7 @@ export default function Navbar() {
                   </Link>
                 </div>
                 <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
-                  <button
-                    type="button"
-                    className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    <span className="sr-only">View notifications</span>
-                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-
+                  <TokenDisplay />
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
                     <div>
@@ -219,13 +213,9 @@ export default function Navbar() {
                     {email}
                   </div>
                 </div>
-                <button
-                  type="button"
-                  className="ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
+                <div className="ml-auto">
+                  <TokenDisplay />
+                </div>
               </div>
               <div className="mt-3 space-y-1">
                 <Disclosure.Button

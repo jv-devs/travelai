@@ -13,6 +13,8 @@ import store from '@/app/store'
 import { getVacation } from '@/app/store/slices/vacationSlice'
 import { useRouter } from 'next/navigation'
 import checkLocation from '@/lib/checkLocation'
+import { UserChoiceData } from '@/types'
+import { BuilderResult } from '@/types'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -29,7 +31,6 @@ export default function Builder() {
     setSubmitting(true)
 
     const formData = new FormData(e.currentTarget)
-    console.log('FormData',formData.entries())
 
     const userChoice = Object.fromEntries(formData.entries()) as UserChoiceData
     console.log('userChoice: ', userChoice)
