@@ -1,8 +1,6 @@
 import { UserChoiceData } from '@/types'
 import axios from 'axios'
 
-// build out type/interface for parameter
-
 export default async function getVacationLocationData(
   userInputs: UserChoiceData
 ) {
@@ -11,7 +9,6 @@ export default async function getVacationLocationData(
       ...userInputs,
     },
   })
-  // console.log(res.data.result)
   const locationData = JSON.parse(res.data.result)
   return locationData.results
 }

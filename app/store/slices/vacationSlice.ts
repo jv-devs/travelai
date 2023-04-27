@@ -138,7 +138,6 @@ export const getVacation = (userChoice: UserChoiceData) => {
       // TODO: handle error
       console.log(error)
     } finally {
-      console.log('finally')
       const { currentUser } = store.getState().auth
       if (currentUser) {
         store.dispatch(incrementTokensUsed(currentUser))

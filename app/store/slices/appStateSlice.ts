@@ -45,7 +45,6 @@ export const updateMaxTokens = () => {
     const docSnap = await getDoc(docRef)
     const data = docSnap.data()
     const maxTokens = data?.count || 10000
-    console.log('maxTokens: ', maxTokens)
     dispatch(setMaxTokens(maxTokens))
   }
 }

@@ -31,7 +31,6 @@ export default function Builder() {
     const formData = new FormData(e.currentTarget)
 
     const userChoice = Object.fromEntries(formData.entries()) as UserChoiceData
-    console.log('userChoice: ', userChoice)
     const destination = userChoice.destination
 
     const destinationValid = await checkLocation(destination)

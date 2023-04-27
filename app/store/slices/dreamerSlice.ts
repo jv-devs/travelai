@@ -77,9 +77,7 @@ export const getSuggestions = (userInputs: UserInputData): AppThunk => {
   return async (dispatch: AppDispatch) => {
     dispatch(setUserInputData(userInputs))
     dispatch(setLoadingSuggestions(true))
-    console.log('userInputs: ', userInputs)
     const suggestions = await getDreamerSuggestions(userInputs)
-    console.log('suggestions received: ', suggestions)
     dispatch(setDreamerResults(suggestions))
     dispatch(setLoadingSuggestions(false))
     dispatch(setShowSuggestions(true))

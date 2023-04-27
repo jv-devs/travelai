@@ -30,11 +30,9 @@ export default function History() {
   const userHistory = useSelector((state: RootState) => state.auth.history)
 
   const handleClick = (vacation: VacationState) => {
-    console.log(vacation)
     // set vacation state in redux
     store.dispatch(updateField(vacation))
     // navigate to vacation page
-
     router.push('/home/planner')
   }
 
