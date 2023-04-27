@@ -18,13 +18,6 @@ const initialState: VacationState = {
     conditions: 'Sunny',
     humidity: '75%',
   },
-  currentWeather: {
-    temp: 27,
-    conditions: 'Sunny',
-    humidity: 75,
-    wind: 7,
-    daylightHours: '24',
-  },
   exchangeRate: {
     from: 'USD',
     to: 'MXN',
@@ -122,7 +115,6 @@ export const getVacation = (userChoice: UserChoiceData) => {
         getVacationLocationData(userChoice),
       ])
 
-      // store.dispatch(updateField(currentWeather))
       store.dispatch(updateField(images))
       store.dispatch(updateField(vacationLocationData))
 
