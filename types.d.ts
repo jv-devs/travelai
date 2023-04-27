@@ -34,14 +34,6 @@ type Weather = {
   humidity: string
 }
 
-type CurrentWeather = {
-  temp: number
-  conditions: string
-  humidity: number
-  wind: number
-  daylightHours: string
-}
-
 type ExchangeRate = {
   from: string
   to: string
