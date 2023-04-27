@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const location = searchParams.get('location') || ''
+  const location = searchParams.get('location') as string
   // console.log(location)
   try {
     const res = await fetch(

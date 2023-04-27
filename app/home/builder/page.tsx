@@ -1,6 +1,5 @@
 'use client'
 
-// import getGreeting from '@/lib/getGreeting'
 import { FormEvent, useState } from 'react'
 
 import vacationTypes from './data/vacation-types'

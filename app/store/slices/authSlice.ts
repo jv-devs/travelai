@@ -144,10 +144,10 @@ export const authStateChanged = () => {
     let user: AppUser | null = null
     auth.onAuthStateChanged(async (userData) => {
       if (userData) {
-        const displayName = userData.displayName || ''
-        const email = userData.email || ''
-        const uid = userData.uid || ''
-        const photoURL = userData.photoURL || ''
+        const displayName = userData.displayName as string
+        const email = userData.email as string
+        const uid = userData.uid as string
+        const photoURL = userData.photoURL as string
         user = { displayName, email, uid, photoURL }
         await checkUserInDB(user)
 
