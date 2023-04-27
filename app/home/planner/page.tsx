@@ -3,13 +3,19 @@
 import { useSelector } from 'react-redux'
 
 import { fade } from '@/lib/animations'
+import { RootState } from '@/app/store'
+import { motion } from 'framer-motion'
+
 import ImageGallery from './components/ImageGallery'
 import Intro from './components/Intro'
 import ItineraryList from './components/ItineraryList'
-import LocalDetails from './components/LocalDetails'
-import { motion } from 'framer-motion'
 import CustomLoadingAnimation from './components/CustomLoadingAnimation'
-import { RootState } from '@/app/store'
+import Weather from './components/Weather'
+import ExchangeRate from './components/ExchangeRate'
+import LocalPhrases from './components/LocalPhrases'
+import NiceToKnow from './components/NiceToKnow'
+import NeedToKnow from './components/NeedToKnow'
+import FunFacts from './components/FunFacts'
 
 export default function Planner() {
   const loadingPlanner = useSelector(
@@ -27,7 +33,12 @@ export default function Planner() {
       variants={fade}
     >
       <Intro />
-      <LocalDetails />
+      <Weather />
+      <ExchangeRate />
+      <LocalPhrases />
+      <NiceToKnow />
+      <NeedToKnow />
+      <FunFacts />
       <ImageGallery />
       <ItineraryList />
     </motion.main>
