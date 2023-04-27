@@ -9,7 +9,7 @@ const openai = new OpenAIApi(new Configuration(configuration))
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const location = searchParams.get('location') || ''
+  const location = searchParams.get('location') as string
 
   const completion = await openai.createCompletion({
     model: 'text-davinci-003',

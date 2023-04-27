@@ -9,10 +9,10 @@ const openai = new OpenAIApi(new Configuration(configuration))
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const destination = searchParams.get('destination') || ''
-  const vacationBudget = searchParams.get('vacationBudget') || ''
-  const travelSeason = searchParams.get('travelSeason') || ''
-  const vacationType = searchParams.get('vacationType') || ''
+  const destination = searchParams.get('destination') as string
+  const vacationBudget = searchParams.get('vacationBudget') as string
+  const travelSeason = searchParams.get('travelSeason') as string
+  const vacationType = searchParams.get('vacationType') as string
 
   const completion = await openai.createCompletion({
     model: 'text-davinci-003',
