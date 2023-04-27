@@ -169,9 +169,7 @@ export const getVacation = (userChoice: UserChoiceData) => {
     dispatch(setLoadingPlanner(true))
     dispatch(setUserChoiceData(userChoice))
     try {
-      // const [currentWeather, images, vacationLocationData] = await Promise.all([
       const [images, vacationLocationData] = await Promise.all([
-        // getCurrentWeather(userChoice.destination)
         getLocationImages(userChoice.destination),
         getVacationLocationData(userChoice),
       ])
