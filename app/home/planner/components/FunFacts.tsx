@@ -10,6 +10,7 @@ export default function FunFacts() {
   )
   return (
     <div className="bg-white px-4 py-5 sm:px-6">
+      <h2 className="pb-6 text-center text-2xl">Fun Facts</h2>
       <ul role="list">
         {funFacts.map((string, idx) => (
           <li key={idx} className="px-6 py-4">

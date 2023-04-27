@@ -32,15 +32,17 @@ export default function Planner() {
       exit="exit"
       variants={fade}
     >
-      <Intro />
-      <Weather />
-      <ExchangeRate />
-      <LocalPhrases />
-      <NiceToKnow />
-      <NeedToKnow />
-      <FunFacts />
-      <ImageGallery />
-      <ItineraryList />
+      <div className="my-6 flex flex-col gap-6 first:mt-0">
+        <Intro />
+        <Weather />
+        <ExchangeRate />
+        <LocalPhrases />
+        <NiceToKnow />
+        <NeedToKnow />
+        <FunFacts />
+        <ImageGallery />
+        <ItineraryList />
+      </div>
     </motion.main>
   )
 }
