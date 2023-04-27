@@ -1,7 +1,9 @@
 // appStateSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { doc, getDoc } from 'firebase/firestore'
+
 import { db } from '@/app/firebase'
+
 import { AppDispatch } from '..'
 
 interface AppState {

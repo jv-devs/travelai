@@ -1,7 +1,8 @@
 'use client'
 
-import { RootState } from '@/app/store'
 import { useSelector } from 'react-redux'
+
+import { RootState } from '@/app/store'
 
 export default function TokenDisplay() {
   const maxTokens = useSelector((state: RootState) => state.appState.maxTokens)

@@ -1,13 +1,13 @@
 'use client'
 
-import { useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
+import { useSelector } from 'react-redux'
+
+import { RootState } from '@/app/store'
+import { fade } from '@/lib/animations'
 
 import DreamerForm from './components/DreamerForm'
 import DreamerSuggestions from './components/DreamerSuggestions'
-
-import { fade } from '@/lib/animations'
-import { RootState } from '@/app/store'
 
 export default function Dreamer() {
   const showSuggestions = useSelector(

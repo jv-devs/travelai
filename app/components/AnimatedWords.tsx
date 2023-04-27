@@ -1,7 +1,8 @@
 'use client'
 
-import { staggerChildren, wordAnimation } from '@/lib/animations'
 import { motion } from 'framer-motion'
+
+import { staggerChildren, wordAnimation } from '@/lib/animations'
 
 type AnimatedWordsProps = {
   title: string

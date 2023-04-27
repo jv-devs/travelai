@@ -1,21 +1,21 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import { useSelector } from 'react-redux'
 
-import { fade } from '@/lib/animations'
 import { RootState } from '@/app/store'
-import { motion } from 'framer-motion'
+import { fade } from '@/lib/animations'
 
+import CustomLoadingAnimation from './components/CustomLoadingAnimation'
+import ExchangeRate from './components/ExchangeRate'
+import FunFacts from './components/FunFacts'
 import ImageGallery from './components/ImageGallery'
 import Intro from './components/Intro'
 import ItineraryList from './components/ItineraryList'
-import CustomLoadingAnimation from './components/CustomLoadingAnimation'
-import Weather from './components/Weather'
-import ExchangeRate from './components/ExchangeRate'
 import LocalPhrases from './components/LocalPhrases'
-import NiceToKnow from './components/NiceToKnow'
 import NeedToKnow from './components/NeedToKnow'
-import FunFacts from './components/FunFacts'
+import NiceToKnow from './components/NiceToKnow'
+import Weather from './components/Weather'
 
 export default function Planner() {
   const loadingPlanner = useSelector(
