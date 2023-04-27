@@ -14,7 +14,6 @@ import { getVacation } from '@/app/store/slices/vacationSlice'
 import { useRouter } from 'next/navigation'
 import checkLocation from '@/lib/checkLocation'
 import { UserChoiceData } from '@/types'
-import { BuilderResult } from '@/types'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
