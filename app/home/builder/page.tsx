@@ -1,18 +1,18 @@
 'use client'
 
+import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 
-import vacationTypes from './data/vacation-types'
-import travelSeasons from './data/travel-seasons'
-import vacationBudgets from './data/vacation-budgets'
-
-import { motion } from 'framer-motion'
-import { fade } from '@/lib/animations'
 import store from '@/app/store'
 import { getVacation } from '@/app/store/slices/vacationSlice'
-import { useRouter } from 'next/navigation'
+import { fade } from '@/lib/animations'
 import checkLocation from '@/lib/checkLocation'
 import { UserChoiceData } from '@/types'
+
+import travelSeasons from './data/travel-seasons'
+import vacationBudgets from './data/vacation-budgets'
+import vacationTypes from './data/vacation-types'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')

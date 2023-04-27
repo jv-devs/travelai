@@ -1,14 +1,16 @@
-import getExchangeRate from '@/lib/getExchangeRate'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import store from '..'
-import { setLoadingPlanner } from './appStateSlice'
+import { addDoc, collection } from 'firebase/firestore'
+
+import { db } from '@/app/firebase'
+import getExchangeRate from '@/lib/getExchangeRate'
 import getLocationImages from '@/lib/getLocationImages'
 import getVacationLocationData from '@/lib/getVacationLocationData'
-import { setUserChoiceData } from './dreamerSlice'
-import { getUserHistory, incrementTokensUsed } from './authSlice'
-import { db } from '@/app/firebase'
-import { addDoc, collection } from 'firebase/firestore'
 import { UserChoiceData, VacationState } from '@/types'
+
+import store from '..'
+import { setLoadingPlanner } from './appStateSlice'
+import { getUserHistory, incrementTokensUsed } from './authSlice'
+import { setUserChoiceData } from './dreamerSlice'
 
 const initialState: VacationState = {
   name: 'Cancun, Mexico',

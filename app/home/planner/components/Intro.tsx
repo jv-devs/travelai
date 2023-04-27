@@ -1,9 +1,10 @@
 'use client'
 
-import { useSelector } from 'react-redux'
-import { RootState } from '@/app/store'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
+
+import { RootState } from '@/app/store'
 
 export default function Intro() {
   const {

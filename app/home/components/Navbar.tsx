@@ -1,17 +1,17 @@
-import { Fragment } from 'react'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { PlusIcon } from '@heroicons/react/20/solid'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
-
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { PlusIcon } from '@heroicons/react/20/solid'
-
-import { slideFromLeft } from '@/lib/animations'
+import { Fragment } from 'react'
 import { useSelector } from 'react-redux'
+
 import store, { RootState } from '@/app/store'
 import { handleSignOut } from '@/app/store/slices/authSlice'
+import { slideFromLeft } from '@/lib/animations'
+
 import TokenDisplay from './TokenDisplay'
 
 const links = [

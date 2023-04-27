@@ -1,15 +1,15 @@
 'use client'
 
-import { MouseEvent } from 'react'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { MouseEvent } from 'react'
+import { useSelector } from 'react-redux'
 
-import { fade } from '@/lib/animations'
-import { getVacation } from '@/app/store/slices/vacationSlice'
 import store, { RootState } from '@/app/store'
 import { setShowSuggestions } from '@/app/store/slices/dreamerSlice'
-import { useSelector } from 'react-redux'
+import { getVacation } from '@/app/store/slices/vacationSlice'
+import { fade } from '@/lib/animations'
 import { DreamerResult, UserChoiceData } from '@/types'
 
 export default function DreamerSuggestions() {

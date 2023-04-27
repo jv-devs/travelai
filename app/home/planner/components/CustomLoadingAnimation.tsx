@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
-import { vacationFacts } from '../data/vacationFacts'
+
 import { loadingMessages } from '../data/loadingMessages'
+import { vacationFacts } from '../data/vacationFacts'
 
 const getRandomString = (array: string[]) => {
   const randomIndex = Math.floor(Math.random() * array.length)
