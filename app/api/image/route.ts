@@ -5,10 +5,20 @@ export async function GET(request: Request) {
   const location = searchParams.get('location') as string
   try {
     const res = await fetch(
-      `https://api.unsplash.com/search/photos?client_id=${process.env.IMAGE_API_KEY}&page=1&query=${location}`
+      `https://api.unsplash.com/search/photos?client_id=${process.env.IMAGE_API_KEY}&page=1&per_page=5&query=${location}`
     )
-    const data = await res.json()
-    const rawPhotos = data.results.slice(0, 3)
+    let data = await res.json()
+    // some valid but less know locations return no results
+    if (!data.results.length) {
+      // return recent generic vacation images
+      const res = await fetch(
+        `https://api.unsplash.com/search/photos?client_id=${process.env.IMAGE_API_KEY}&page=1&per_page=5&order_by=latest&query=vacation`
+      )
+      data = await res.json()
+    }
+
+    const rawPhotos = data.results
+
     const images = rawPhotos.map((photo: any) => {
       const width = photo.width
       const height = photo.height
