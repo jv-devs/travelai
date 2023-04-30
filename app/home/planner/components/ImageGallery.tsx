@@ -25,7 +25,7 @@ export default function ImageGallery() {
   return (
     <div className="mx-auto max-w-4xl">
       <h2 className="pb-6 text-center text-2xl">Image Gallery</h2>
-      <div className="relative mx-4 my-5 sm:mx-6">
+      <div className="container relative mx-4 my-5 sm:mx-6">
         <Image
           priority
           quality={75}
