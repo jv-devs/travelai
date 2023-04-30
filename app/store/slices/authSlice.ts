@@ -153,6 +153,7 @@ export const authStateChanged = () => {
         }
       } else {
         user = null
+        dispatch(setUserHistory([]))
       }
       dispatch(setCurrentUser(user))
       dispatch(setIsLoading(false))
