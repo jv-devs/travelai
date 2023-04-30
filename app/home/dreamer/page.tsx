@@ -18,8 +18,7 @@ export default function Dreamer() {
   // Check if the user has used all of their tokens
   const tokenCount = useSelector((state: RootState) => state.auth.tokensUsed)
   const tokenLimit = useSelector((state: RootState) => state.appState.maxTokens)
-  // if (tokenCount >= tokenLimit) {
-  if (true) {
+  if (tokenCount >= tokenLimit) {
     return <TokenLimitReached />
   }
 
