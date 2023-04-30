@@ -8,13 +8,10 @@ import { fade } from '@/lib/animations'
 
 import CustomLoadingAnimation from './components/CustomLoadingAnimation'
 import ExchangeRate from './components/ExchangeRate'
-import FunFacts from './components/FunFacts'
 import ImageGallery from './components/ImageGallery'
 import Intro from './components/Intro'
-import ItineraryList from './components/ItineraryList'
 import LocalPhrases from './components/LocalPhrases'
-import NeedToKnow from './components/NeedToKnow'
-import NiceToKnow from './components/NiceToKnow'
+import PlannerList from './components/PlannerList'
 import Weather from './components/Weather'
 
 export default function Planner() {
@@ -37,11 +34,14 @@ export default function Planner() {
         <Weather />
         <ExchangeRate />
         <LocalPhrases />
-        <NiceToKnow />
-        <NeedToKnow />
-        <FunFacts />
+        <PlannerList
+          listName="activitySuggestionsList"
+          listTitle="Itinerary List"
+        />
+        <PlannerList listName="needToKnow" listTitle="Need To Know" />
+        <PlannerList listName="niceToKnow" listTitle="Nice To Know" />
+        <PlannerList listName="funFacts" listTitle="Fun Facts" />
         <ImageGallery />
-        <ItineraryList />
       </div>
     </motion.main>
   )

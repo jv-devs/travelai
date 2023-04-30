@@ -75,6 +75,12 @@ type VacationState = {
   images: Image[]
 }
 
+type StringArrayKeys<T> = {
+  [K in keyof T]: T[K] extends string[] ? K : never
+}[keyof T]
+
+type VacationArrayKey = StringArrayKeys<VacationState>
+
 type HistoryType = {
   uid: string
   vacation: VacationState
