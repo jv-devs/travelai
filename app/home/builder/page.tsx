@@ -3,13 +3,15 @@
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
+import { useSelector } from 'react-redux'
 
-import store from '@/app/store'
+import store, { RootState } from '@/app/store'
 import { getVacation } from '@/app/store/slices/vacationSlice'
 import { fade } from '@/lib/animations'
 import checkLocation from '@/lib/checkLocation'
 import { UserChoiceData } from '@/types'
 
+import TokenLimitReached from '../components/TokenLimitReached'
 import travelSeasons from './data/travel-seasons'
 import vacationBudgets from './data/vacation-budgets'
 import vacationTypes from './data/vacation-types'
@@ -41,6 +43,13 @@ export default function Builder() {
       setValidDestination(false)
       setSubmitting(false)
     }
+  }
+
+  // Check if the user has used all of their tokens
+  const tokenCount = useSelector((state: RootState) => state.auth.tokensUsed)
+  const tokenLimit = useSelector((state: RootState) => state.appState.maxTokens)
+  if (tokenCount >= tokenLimit) {
+    return <TokenLimitReached />
   }
 
   return (

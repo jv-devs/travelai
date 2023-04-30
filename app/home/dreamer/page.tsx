@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from '@/app/store'
 import { fade } from '@/lib/animations'
 
+import TokenLimitReached from '../components/TokenLimitReached'
 import DreamerForm from './components/DreamerForm'
 import DreamerSuggestions from './components/DreamerSuggestions'
 
@@ -13,6 +14,14 @@ export default function Dreamer() {
   const showSuggestions = useSelector(
     (state: RootState) => state.dreamer.showSuggestions
   )
+
+  // Check if the user has used all of their tokens
+  const tokenCount = useSelector((state: RootState) => state.auth.tokensUsed)
+  const tokenLimit = useSelector((state: RootState) => state.appState.maxTokens)
+  // if (tokenCount >= tokenLimit) {
+  if (true) {
+    return <TokenLimitReached />
+  }
 
   return (
     <motion.main
