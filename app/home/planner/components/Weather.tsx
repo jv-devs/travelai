@@ -14,8 +14,10 @@ export default function Weather() {
     { id: 3, name: 'Humidity', value: humidity },
   ]
   return (
-    <div className="py-24 sm:py-32">
-      <h2 className="pb-6 text-center text-2xl">Weather</h2>
+    <div className="py-12 sm:py-24">
+      <h2 className="pb-6 text-center text-2xl text-black text-opacity-50">
+        Weather
+      </h2>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
           {stats.map((stat) => (

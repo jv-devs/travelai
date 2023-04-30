@@ -14,9 +14,11 @@ export default function PlannerList({ listName, listTitle }: Props) {
   )
 
   return (
-    <div>
-      <h2 className="pb-6 text-center text-2xl">{listTitle}</h2>
-      <ul className="container mx-auto rounded-lg bg-white px-4 py-5 sm:px-6">
+    <div className="container mx-auto px-4 sm:px-6">
+      <h2 className="pb-6 text-center text-2xl text-black text-opacity-50">
+        {listTitle}
+      </h2>
+      <ul className="rounded-lg bg-white py-5">
         {list.map((item, idx) => {
           return (
             <li key={idx} className="px-6 py-3">

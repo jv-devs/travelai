@@ -17,9 +17,11 @@ export default function LocalPhrases() {
   // loop thru phrases and display them
 
   return (
-    <div>
-      <h2 className="pb-6 text-center text-2xl">Local Phrases</h2>
-      <div className="container mx-auto rounded-lg bg-white px-4 py-5 sm:px-6">
+    <div className="container mx-auto px-4 sm:px-6">
+      <h2 className="pb-6 text-center text-2xl text-black text-opacity-50">
+        Local Phrases
+      </h2>
+      <div className="rounded-lg bg-white px-4 py-5 sm:px-6">
         <ul role="list" className="flex flex-wrap justify-center">
           {Object.entries(phrases).map(([key, value], idx) => (
             // loop thru phrases and display them

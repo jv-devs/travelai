@@ -24,7 +24,7 @@ export default function TokenDisplay() {
     >
       <span className="sr-only">Daily Tokens</span>
       <span>
-        <span className="hidden lg:inline-block">Tokens: </span>
+        <span className="hidden lg:inline-block">Tokens:&nbsp;</span>
         <span className={tokenDisplayColor}>
           {currentTokens}/{maxTokens}
         </span>

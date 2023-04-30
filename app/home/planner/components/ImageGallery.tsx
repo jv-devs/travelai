@@ -23,9 +23,11 @@ export default function ImageGallery() {
 
   const { url, alt, width, height, userName, user } = images[currentIndex]
   return (
-    <div className="mx-auto max-w-4xl">
-      <h2 className="pb-6 text-center text-2xl">Image Gallery</h2>
-      <div className="container relative mx-4 my-5 sm:mx-6">
+    <div className="container mx-auto px-4 sm:px-6">
+      <h2 className="pb-6 text-center text-2xl text-black text-opacity-50">
+        Image Gallery
+      </h2>
+      <div className="relative mx-auto max-w-4xl">
         <Image
           priority
           quality={75}

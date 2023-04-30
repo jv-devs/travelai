@@ -30,7 +30,7 @@ export default function Dreamer() {
       exit="exit"
       variants={fade}
     >
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4 sm:px-6">
         {!showSuggestions ? <DreamerForm /> : <DreamerSuggestions />}
       </div>
     </motion.main>

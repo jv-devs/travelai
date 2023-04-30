@@ -50,7 +50,7 @@ export default function DreamerForm({}) {
       variants={fade}
       className="my-8 sm:mx-auto sm:w-full sm:max-w-md"
     >
-      <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
+      <div className="rounded-lg bg-white px-4 py-8 shadow sm:px-10">
         <h2 className="text-center text-2xl font-bold">Let&apos;s Dream</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
           <div className="relative">

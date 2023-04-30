@@ -37,7 +37,7 @@ export default function History() {
   }
 
   return (
-    <div className="container mx-auto my-6">
+    <div className="container mx-auto my-6 px-4 sm:px-6">
       <h1 className="my-4 text-3xl font-semibold text-gray-900">History</h1>
       <ul
         role="list"

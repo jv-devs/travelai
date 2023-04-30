@@ -16,9 +16,11 @@ export default function ExchangeRate() {
   ]
 
   return (
-    <div className="container mx-auto my-6">
-      <h2 className="pb-6 text-center text-2xl">Exchange Rate</h2>
-      <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+    <div className="container mx-auto my-6 px-4 sm:px-6">
+      <h2 className="pb-6 text-center text-2xl text-black text-opacity-50">
+        Exchange Rate
+      </h2>
+      <dl className="grid grid-cols-1 gap-5 sm:grid-cols-3">
         {stats.map((item) => (
           <div
             key={item.name}

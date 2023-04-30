@@ -60,9 +60,9 @@ export default function Builder() {
       exit="exit"
       variants={fade}
     >
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="my-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
+          <div className="rounded-lg bg-white px-4 py-8 shadow sm:px-10">
             <h2 className="text-center text-2xl">Builder</h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-8">
               <div className="relative">

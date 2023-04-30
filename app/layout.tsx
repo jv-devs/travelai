@@ -11,8 +11,9 @@ const quicksand = Quicksand({
 })
 
 export const metadata = {
-  title: 'AI Travel App',
-  description: 'Created by JV Devs',
+  title: 'TravelAI - Your Ultimate Travel Guide',
+  description:
+    'Plan your next adventure with TravelAI, the ultimate travel planning app that uses AI to recommend the curated destinations.',
 }
 
 export default function RootLayout({
