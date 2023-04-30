@@ -56,7 +56,7 @@ export default function Builder() {
           <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
             <h2 className="text-center text-2xl">Builder</h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-8">
-              <div>
+              <div className="relative">
                 <label
                   htmlFor="destination"
                   className="block text-sm font-medium leading-6 text-gray-900"
@@ -72,7 +72,7 @@ export default function Builder() {
                   required
                 />
                 {!validDestination && (
-                  <p className="text-sm font-bold text-red-600">
+                  <p className="absolute text-sm font-bold text-red-600">
                     * Destination not valid.
                   </p>
                 )}
